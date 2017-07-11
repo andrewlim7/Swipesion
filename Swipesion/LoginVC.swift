@@ -135,7 +135,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                 
                 let userReference = ref.child("users").child(uid)
                 
-                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name,email"])
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,email"])
                 graphRequest.start(completionHandler: { (connection, result, error) in
                     if error != nil {
                         print("\(String(describing: error))")
@@ -147,6 +147,13 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                                 print("\(String(describing: error))")
                                 return
                             }
+                            
+                            let fid = values["id"] as? String
+                            
+                            let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fid!)/picture?type=large&return_ssl_resources=1")
+                            
+                            
+                            
                             // no error, so it means we've saved the user into our firebase database successfully
                             print("Save the user successfully into Firebase database")
                         })

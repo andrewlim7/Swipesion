@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func displayMainScreen(){
         let authStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let mainVC = authStoryboard.instantiateViewController(withIdentifier: "TabBarNavi")
+        let mainVC = authStoryboard.instantiateViewController(withIdentifier: "UIMainNC")
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
