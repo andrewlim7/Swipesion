@@ -17,6 +17,7 @@
 		C7E88F961F148D5E00CA4478 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88F951F148D5E00CA4478 /* RegisterVC.swift */; };
 		C7E88F981F148D8100CA4478 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88F971F148D8100CA4478 /* MainVC.swift */; };
 		C7E88F9A1F148D8B00CA4478 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7E88F991F148D8B00CA4478 /* Auth.storyboard */; };
+		C7E88F9C1F14ABD400CA4478 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88F9B1F14ABD400CA4478 /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C7E88F951F148D5E00CA4478 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C7E88F971F148D8100CA4478 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		C7E88F991F148D8B00CA4478 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		C7E88F9B1F14ABD400CA4478 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		C7E88F911F148CDC00CA4478 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C7E88F9B1F14ABD400CA4478 /* CircleView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E88F961F148D5E00CA4478 /* RegisterVC.swift in Sources */,
+				C7E88F9C1F14ABD400CA4478 /* CircleView.swift in Sources */,
 				C7E88F981F148D8100CA4478 /* MainVC.swift in Sources */,
 				C7E88F901F148CAB00CA4478 /* LoginVC.swift in Sources */,
 				C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */,

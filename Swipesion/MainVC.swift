@@ -7,9 +7,19 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+import FBSDKLoginKit
+
 
 class MainVC: UIViewController {
 
+    @IBOutlet weak var signOutButton: UIButton!{
+        didSet{
+            signOutButton.addTarget(self, action: #selector(didTapSignOutButton(_:)), for: .touchUpInside)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +31,22 @@ class MainVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func didTapSignOutButton(_ sender: Any){
+        let firebaseAuth = Auth.auth()
+        let loginManager = FBSDKLoginManager() //FB system logout
+        
+        do {
+            try firebaseAuth.signOut()
+            loginManager.logOut()
+            
+            print ("Logged out successfully!")
+            
+        } catch let signOutError as NSError {
+            
+            print ("Error signing out: %@", signOutError)
+            return
+        }
     }
-    */
-
+    
 }
