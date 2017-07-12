@@ -123,8 +123,8 @@
 		C7E88F941F148CFA00CA4478 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				C7E88F7F1F1488D600CA4478 /* Main.storyboard */,
 				C7E88F991F148D8B00CA4478 /* Auth.storyboard */,
+				C7E88F7F1F1488D600CA4478 /* Main.storyboard */,
 				C7E88F841F1488D600CA4478 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboard;

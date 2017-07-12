@@ -15,5 +15,6 @@ target 'Swipesion' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'SDWebImage'
+  pod 'MARoundButton'
 
 end

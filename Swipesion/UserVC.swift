@@ -9,6 +9,11 @@
 import UIKit
 
 class UserVC: UIViewController {
+    
+    @IBOutlet weak var changeProfileImage: UIImageView!
+    @IBOutlet weak var bioTextField: UITextField!
+    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var uploadImageButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +25,5 @@ class UserVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

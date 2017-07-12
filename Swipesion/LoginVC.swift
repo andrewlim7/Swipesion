@@ -25,6 +25,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
             passwordTextField.placeholder = "Insert password"
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
+            passwordTextField.returnKeyType = .done
         }
     }
     
@@ -148,12 +149,6 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                                 return
                             }
                             
-                            let fid = values["id"] as? String
-                            
-                            let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fid!)/picture?type=large&return_ssl_resources=1")
-                            
-                            
-                            
                             // no error, so it means we've saved the user into our firebase database successfully
                             print("Save the user successfully into Firebase database")
                         })
@@ -179,9 +174,15 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        }else if textField == passwordTextField{
+            passwordTextField.resignFirstResponder()
+        }
         return true
+//        emailTextField.resignFirstResponder()
+//        passwordTextField.resignFirstResponder()
+//        return true
     }
     
     func warningAlert(warningMessage: String){
