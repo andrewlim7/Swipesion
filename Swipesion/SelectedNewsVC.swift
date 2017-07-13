@@ -48,12 +48,12 @@ class SelectedNewsVC: UIViewController {
     
     func urlBtnTapped(_ sender: Any) {
         
-        let urlString = getNews?.url
-        let url = URL(string: urlString!)!
-        let controller = SFSafariViewController(url: url)
-        self.present(controller, animated: true, completion: nil)
-        controller.delegate = self
-
+        if let urlString = getNews?.url {
+            let url = URL(string: urlString)!
+            let controller = SFSafariViewController(url: url)
+            self.present(controller, animated: true, completion: nil)
+            controller.delegate = self
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
