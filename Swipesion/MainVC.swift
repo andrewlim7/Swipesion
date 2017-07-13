@@ -41,6 +41,7 @@ class MainVC: UIViewController {
             button2.corner = 30
             button2.borderColor = UIColor.black
             button2.border = 2
+            button2.addTarget(self, action: #selector(button2Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button3: MARoundButton!{
@@ -48,6 +49,7 @@ class MainVC: UIViewController {
             button3.corner = 30
             button3.borderColor = UIColor.black
             button3.border = 2
+            button3.addTarget(self, action: #selector(button3Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button4: MARoundButton!{
@@ -55,6 +57,7 @@ class MainVC: UIViewController {
             button4.corner = 30
             button4.borderColor = UIColor.black
             button4.border = 2
+            button4.addTarget(self, action: #selector(button4Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button5: MARoundButton!{
@@ -62,6 +65,7 @@ class MainVC: UIViewController {
             button5.corner = 30
             button5.borderColor = UIColor.black
             button5.border = 2
+            button5.addTarget(self, action: #selector(button5Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button6: MARoundButton!{
@@ -69,6 +73,7 @@ class MainVC: UIViewController {
             button6.corner = 30
             button6.borderColor = UIColor.black
             button6.border = 2
+            button6.addTarget(self, action: #selector(button6Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button7: MARoundButton!{
@@ -76,6 +81,7 @@ class MainVC: UIViewController {
             button7.corner = 30
             button7.borderColor = UIColor.black
             button7.border = 2
+            button7.addTarget(self, action: #selector(button7Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button8: MARoundButton!{
@@ -83,6 +89,7 @@ class MainVC: UIViewController {
             button8.corner = 30
             button8.borderColor = UIColor.black
             button8.border = 2
+            button8.addTarget(self, action: #selector(button8Tapped(_:)), for: .touchUpInside)
         }
     }
     @IBOutlet weak var button9: MARoundButton!{
@@ -90,6 +97,7 @@ class MainVC: UIViewController {
             button9.corner = 30
             button9.borderColor = UIColor.black
             button9.border = 2
+            button9.addTarget(self, action: #selector(button9Tapped(_:)), for: .touchUpInside)
         }
     }
     
@@ -98,16 +106,60 @@ class MainVC: UIViewController {
         getNewsID()
         showMenu()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func button1Tapped(_ sender: Any){
         
         getCategory(category: "general")
+        self.filteredCategory = []
 
+    }
+    func button2Tapped(_ sender: Any){
+        
+        getCategory(category: "sport")
+        self.filteredCategory = []
+        
+    }
+    func button3Tapped(_ sender: Any){
+        
+        getCategory(category: "music")
+        self.filteredCategory = []
+        
+    }
+    func button4Tapped(_ sender: Any){
+        
+        getCategory(category: "technology")
+        self.filteredCategory = []
+        
+    }
+    func button5Tapped(_ sender: Any){
+        
+        getCategory(category: "business")
+        self.filteredCategory = []
+        
+    }
+    func button6Tapped(_ sender: Any){
+        
+        getCategory(category: "science-and-nature")
+        self.filteredCategory = []
+        
+    }
+    func button7Tapped(_ sender: Any){
+        
+        getCategory(category: "gaming")
+        self.filteredCategory = []
+        
+    }
+    func button8Tapped(_ sender: Any){
+        
+        getCategory(category: "politics")
+        self.filteredCategory = []
+        
+    }
+    func button9Tapped(_ sender: Any){
+        
+        getCategory(category: "entertainment")
+        self.filteredCategory = []
+        
     }
     
     func getCategory(category: String) {

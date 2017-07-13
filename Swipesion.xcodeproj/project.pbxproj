@@ -210,6 +210,7 @@
 				TargetAttributes = {
 					C7E88F771F1488D600CA4478 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 3F9ZJ33XLL;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -442,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;
@@ -458,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;

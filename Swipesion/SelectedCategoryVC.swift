@@ -17,6 +17,9 @@ class SelectedCategoryVC: UIViewController {
     
     var getNewsID: [News] = []
     
+    var session: URLSession = URLSession(configuration: .default)
+    
+    @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!{
         didSet{
             backButton.addTarget(self, action: #selector(backButtonTapped(_:)), for: .touchUpInside)
@@ -41,8 +44,10 @@ class SelectedCategoryVC: UIViewController {
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
-        
-        //        getAllNews()
+        for title in getNewsID {
+            
+            categoryTitleLabel.text = title.category
+        }
         
         newsOnCategory()
     }
@@ -52,6 +57,13 @@ class SelectedCategoryVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        
+//        self.news = []
+//
+//        session.invalidateAndCancel()
+//        
+//    }
     
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
@@ -64,26 +76,11 @@ class SelectedCategoryVC: UIViewController {
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
     }
-    
-    @IBAction func saveBtnTapped(_ sender: Any) {
-        kolodaView?.swipe(.down)
-    }
-    
-    func backButtonTapped(_ sender: Any){
 
+    func backButtonTapped(_ sender: Any){
         
         self.navigationController?.popViewController(animated: true)
-        
     }
-    
-    //
-    //    func getAllNews(){
-    //        for getID in getNewsID {
-    //            if let sourceID = getID.nid {
-    //                getNews(from: sourceID)
-    //            }
-    //        }
-    //    }
     
     func newsOnCategory() {
         
@@ -106,7 +103,7 @@ class SelectedCategoryVC: UIViewController {
     
     func getNews(from source: String, sorted cate: String) {
         
-        let urlSession = URLSession(configuration: .default)
+        session = URLSession(configuration: .default)
         
         let url = URL(string: "https://newsapi.org/v1/articles?source=\(source)&category=\(cate)&apiKey=22f2516b0fc845818b266905e56cf205")
         
@@ -114,7 +111,7 @@ class SelectedCategoryVC: UIViewController {
         
         urlRequest.httpMethod = "GET"
         
-        urlSession.dataTask(with: urlRequest) { (data, response, error) in
+        session.dataTask(with: urlRequest) { (data, response, error) in
             
             if let valideError = error {
                 

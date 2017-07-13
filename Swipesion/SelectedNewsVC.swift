@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import SafariServices
 
 class SelectedNewsVC: UIViewController {
     
@@ -15,8 +16,13 @@ class SelectedNewsVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-
-    @IBOutlet weak var linkLabel: UILabel!
+    @IBOutlet weak var urlBtn: UIButton! {
+        
+        didSet {
+            
+            urlBtn.addTarget(self, action: #selector(urlBtnTapped(_:)), for: .touchUpInside)
+        }
+    }
     @IBOutlet weak var descriptionLabel: UILabel!
 
     @IBOutlet weak var imageView: UIImageView!
@@ -29,7 +35,6 @@ class SelectedNewsVC: UIViewController {
         self.titleLabel.text = getNews?.title
         self.dateLabel.text = getNews?.publishedAt
         self.authorLabel.text = getNews?.author
-        self.linkLabel.text = getNews?.url
         self.descriptionLabel.text = getNews?.description
         
         if let url = getNews?.urlToImage {
@@ -41,9 +46,24 @@ class SelectedNewsVC: UIViewController {
         
     }
     
+    func urlBtnTapped(_ sender: Any) {
+        
+        let urlString = getNews?.url
+        let url = URL(string: urlString!)!
+        let controller = SFSafariViewController(url: url)
+        self.present(controller, animated: true, completion: nil)
+        controller.delegate = self
+
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+}
+
+extension SelectedNewsVC: SFSafariViewControllerDelegate {
+    
     
 }
