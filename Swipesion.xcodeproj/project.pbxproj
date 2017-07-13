@@ -31,6 +31,8 @@
 		C7E88FBC1F174F6100CA4478 /* SelectedNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FBB1F174F6100CA4478 /* SelectedNewsVC.swift */; };
 		C7E88FC01F17C20800CA4478 /* SavedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FBF1F17C20800CA4478 /* SavedNewsCell.swift */; };
 		E5BE607C1F176C2E00F44858 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607B1F176C2E00F44858 /* SWRevealViewController.m */; };
+		E5BE607E1F17BD2C00F44858 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607D1F17BD2C00F44858 /* SettingsVC.swift */; };
+		E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607F1F17BD8700F44858 /* SlideMenuVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		E5BE60791F176C2C00F44858 /* Swipesion-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swipesion-Bridging-Header.h"; sourceTree = "<group>"; };
 		E5BE607A1F176C2E00F44858 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E5BE607B1F176C2E00F44858 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		E5BE607D1F17BD2C00F44858 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		E5BE607F1F17BD8700F44858 /* SlideMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				C7E88F951F148D5E00CA4478 /* RegisterVC.swift */,
 				C7E88F971F148D8100CA4478 /* MainVC.swift */,
 				C7E88F9F1F14D71400CA4478 /* UserVC.swift */,
+				E5BE607D1F17BD2C00F44858 /* SettingsVC.swift */,
+				E5BE607F1F17BD8700F44858 /* SlideMenuVC.swift */,
 				C7E88FA31F14D73000CA4478 /* SelectedCategoryVC.swift */,
 				C7E88FA51F14D73A00CA4478 /* SavedNewsVC.swift */,
 				C7E88FBB1F174F6100CA4478 /* SelectedNewsVC.swift */,
@@ -312,6 +318,7 @@
 				E5BE607C1F176C2E00F44858 /* SWRevealViewController.m in Sources */,
 				C7E88F961F148D5E00CA4478 /* RegisterVC.swift in Sources */,
 				C7E88FBA1F174D1A00CA4478 /* News.swift in Sources */,
+				E5BE607E1F17BD2C00F44858 /* SettingsVC.swift in Sources */,
 				C7E88FBC1F174F6100CA4478 /* SelectedNewsVC.swift in Sources */,
 				C7E88F9C1F14ABD400CA4478 /* CircleView.swift in Sources */,
 				C7E88FAB1F174B1B00CA4478 /* CustomKolodaView.swift in Sources */,
@@ -319,6 +326,7 @@
 				C7E88F981F148D8100CA4478 /* MainVC.swift in Sources */,
 				C7E88F901F148CAB00CA4478 /* LoginVC.swift in Sources */,
 				C7E88FAE1F174B1B00CA4478 /* BackgroundKolodaAnimator.swift in Sources */,
+				E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */,
 				C7E88FAC1F174B1B00CA4478 /* CustomOverlayView.swift in Sources */,
 				C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */,
 				C7E88FC01F17C20800CA4478 /* SavedNewsCell.swift in Sources */,
