@@ -18,7 +18,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!{
         didSet{
-            usernameTextField.placeholder = "Insert Username"
+            usernameTextField.placeholder = "Insert name"
             usernameTextField.delegate = self
 
         }
@@ -71,11 +71,52 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         self.navigationItem.title = "Registration"
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+        
+        imageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(sender:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        imageView.addGestureRecognizer(tapGestureRecognizer)
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer) {
+        
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        
+        let alertController = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                pickerController.sourceType = .camera
+                self.present(pickerController, animated: true, completion: nil)
+            } else {
+                let alertVC = UIAlertController(title: "No Camera",message: "Sorry, this device has no camera",preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK",style:.default,handler: nil)
+                alertVC.addAction(okAction)
+                self.present(alertVC, animated: true,completion: nil)
+                return
+            }
+        }
+
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            pickerController.sourceType = .photoLibrary
+            self.present(pickerController, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+
         
     }
     
@@ -102,13 +143,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         self.myActivityIndicator.startAnimating()
         
         guard
-            let username = usernameTextField.text,
+            let name = usernameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
             let confirmPassword = confirmPasswordTextField.text
             else { return; }
         
-        if username == "" {
+        if name == "" {
             self.warningAlert(warningMessage: "Please enter your username")
             
         } else if password == "" {
@@ -163,7 +204,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                             return
                         }
                         
-                        let param : [String : Any] = ["username": username,
+                        let param : [String : Any] = ["name": name,
                                                       "email": email,
                                                       "profileImageURL": imageURL]
                         
@@ -176,7 +217,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 
                 print("User sign-up successfully! \(user?.uid ?? "")")
                 print("User email address! \(user?.email ?? "")")
-                print("Username is \(username)")
+                print("Username is \(name)")
             })
         }
     }

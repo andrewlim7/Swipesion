@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomImageView" customModule="KolodaTest" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Fla-RJ-v6o"/>
+                <outlet property="customImageView" destination="DA2-RN-0vQ" id="vbo-Kw-Kpd"/>
+                <outlet property="customLabelText" destination="gsj-fa-68n" id="iYk-GU-1KQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleAspectFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DA2-RN-0vQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-fa-68n">
+                    <rect key="frame" x="26" y="45" width="324" height="579"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gsj-fa-68n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="7i7-NU-bN2"/>
+                <constraint firstAttribute="trailing" secondItem="gsj-fa-68n" secondAttribute="trailing" constant="25" id="OE2-zn-pMw"/>
+                <constraint firstItem="gsj-fa-68n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="XNr-dR-f46"/>
+                <constraint firstAttribute="bottom" secondItem="gsj-fa-68n" secondAttribute="bottom" constant="43" id="a3j-I6-Xl8"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lIH-pQ-HDN"/>
+                <constraint firstAttribute="trailing" secondItem="DA2-RN-0vQ" secondAttribute="trailing" id="oMa-03-SMR"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qLL-L0-IHV"/>
+                <constraint firstAttribute="bottom" secondItem="DA2-RN-0vQ" secondAttribute="bottom" id="usg-DV-2Gd"/>
+            </constraints>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

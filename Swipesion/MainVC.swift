@@ -14,6 +14,10 @@ import MARoundButton
 
 
 class MainVC: UIViewController {
+    
+    var interest: [News] = []
+    var filteredCategory: [News] = []
+
 
     @IBOutlet weak var signOutButton: UIButton!{
         didSet{
@@ -26,8 +30,11 @@ class MainVC: UIViewController {
             button1.corner = 30
             button1.borderColor = UIColor.black
             button1.border = 2
+            button1.isEnabled = false
+            button1.addTarget(self, action: #selector(button1Tapped(_:)), for: .touchUpInside)
         }
     }
+    
     @IBOutlet weak var button2: MARoundButton!{
         didSet{
             button2.corner = 30
@@ -87,8 +94,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getNewsID()
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,7 +102,88 @@ class MainVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func button1Tapped(_ sender: Any){
+        
+        for getCate in interest {
+            
+            if getCate.category == "technology" {
+                
+                filteredCategory.append(getCate)
+            }
+            
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SelectedCategoryVC") as? SelectedCategoryVC
+        
+        vc?.getNewsID = filteredCategory
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
     
+    func getNewsID() {
+        
+        let urlSession = URLSession(configuration: .default)
+        
+        let url = URL(string: "https://newsapi.org/v1/sources?&apiKey=22f2516b0fc845818b266905e56cf205")
+        
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "GET"
+        
+        urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            if let valideError = error {
+                
+                print(valideError.localizedDescription)
+                
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            switch httpResponse.statusCode {
+                
+            case 200...299:
+                
+                if let validData = data {
+                    
+                    do {
+                        
+                        let json: [String:Any]? = try JSONSerialization.jsonObject(with: validData, options: .allowFragments) as? [String:Any]
+                        
+                        guard let getCategory = json?["sources"] as? [[String:Any]] else { return }
+                        
+                        for retrievedObject in getCategory {
+                            
+                            let latestNews = News()
+                            
+                            latestNews.nid = retrievedObject["id"] as? String
+                            latestNews.category = retrievedObject["category"] as? String
+                            
+                            self.interest.append(latestNews)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.button1.isEnabled = true
+                        }
+                        return
+                    }
+                    catch {
+                        
+                        return
+                    }
+                }
+                
+            case 400...599:
+                return
+            default:
+                return
+            }
+            
+            }.resume()
+    }
+
     func didTapSignOutButton(_ sender: Any){
         let firebaseAuth = Auth.auth()
         let loginManager = FBSDKLoginManager() //FB system logout

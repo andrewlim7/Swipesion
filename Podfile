@@ -16,5 +16,6 @@ target 'Swipesion' do
   pod 'FBSDKLoginKit'
   pod 'SDWebImage'
   pod 'MARoundButton'
+  pod 'Koloda', '~> 4.0'
 
 end
