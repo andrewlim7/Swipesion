@@ -104,9 +104,15 @@ class MainVC: UIViewController {
     
     func button1Tapped(_ sender: Any){
         
+        getCategory(category: "general")
+
+    }
+    
+    func getCategory(category: String) {
+        
         for getCate in interest {
             
-            if getCate.category == "technology" {
+            if getCate.category == category {
                 
                 filteredCategory.append(getCate)
             }
