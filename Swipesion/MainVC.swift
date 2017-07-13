@@ -20,11 +20,7 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var menuBtn: UIBarButtonItem! 
 
-    @IBOutlet weak var signOutButton: UIButton!{
-        didSet{
-            signOutButton.addTarget(self, action: #selector(didTapSignOutButton(_:)), for: .touchUpInside)
-        }
-    }
+    
     
     @IBOutlet weak var button1: MARoundButton!{
         didSet{
@@ -244,22 +240,7 @@ class MainVC: UIViewController {
             }.resume()
     }
 
-    func didTapSignOutButton(_ sender: Any){
-        let firebaseAuth = Auth.auth()
-        let loginManager = FBSDKLoginManager() //FB system logout
-        
-        do {
-            try firebaseAuth.signOut()
-            loginManager.logOut()
-            
-            print ("Logged out successfully!")
-            
-        } catch let signOutError as NSError {
-            
-            print ("Error signing out: %@", signOutError)
-            return
-        }
-    }
+    
     
     func showMenu() {
         
