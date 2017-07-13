@@ -18,6 +18,7 @@ class MainVC: UIViewController {
     var interest: [News] = []
     var filteredCategory: [News] = []
 
+    @IBOutlet weak var menuBtn: UIBarButtonItem! 
 
     @IBOutlet weak var signOutButton: UIButton!{
         didSet{
@@ -95,6 +96,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewsID()
+        showMenu()
     }
 
     override func didReceiveMemoryWarning() {
@@ -198,6 +200,20 @@ class MainVC: UIViewController {
             
             print ("Error signing out: %@", signOutError)
             return
+        }
+    }
+    
+    func showMenu() {
+        
+        if revealViewController() != nil {
+            
+            menuBtn.target = revealViewController()
+            menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+            revealViewController().rearViewRevealWidth = 275
+            
+            view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+            
+            
         }
     }
     
