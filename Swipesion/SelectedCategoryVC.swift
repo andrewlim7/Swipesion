@@ -146,8 +146,8 @@ class SelectedCategoryVC: UIViewController {
                         guard let getArticles = json?["articles"] as? [[String:Any]] else { return }
                         
                         for retrievedObject in getArticles {
-                            let latestNews = News(dictionary: retrievedObject)
-                            self.news.append(latestNews!)
+                            guard let latestNews = News(dictionary: retrievedObject) else { return }
+                            self.news.append(latestNews)
                         }
                         
                         
