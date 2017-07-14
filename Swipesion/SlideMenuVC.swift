@@ -31,8 +31,9 @@ class SlideMenuVC: UIViewController {
     func didTappedSavedNewsButton(_ sender : Any){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as? SavedNewsVC
-
-        self.present(vc!, animated: true, completion: nil)
+       // let navController = UINavigationController()
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
     }
 
     func didTappedSettingsButton(_ sender: Any) {
