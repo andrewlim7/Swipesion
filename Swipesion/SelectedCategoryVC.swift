@@ -19,8 +19,6 @@ class SelectedCategoryVC: UIViewController {
     
     var getNewsID: [News] = []
     
-    var storeNews : [News] = []
-    
     var session: URLSession = URLSession(configuration: .default)
     
     @IBOutlet weak var categoryTitleLabel: UILabel!
@@ -56,6 +54,7 @@ class SelectedCategoryVC: UIViewController {
         for title in getNewsID {
             
             categoryTitleLabel.text = title.category
+            
         }
         
         newsOnCategory()
@@ -148,19 +147,10 @@ class SelectedCategoryVC: UIViewController {
                         guard let getArticles = json?["articles"] as? [[String:Any]] else { return }
                         
                         for retrievedObject in getArticles {
-                            
-                            let latestNews = News()
-                            
-                            latestNews.author = retrievedObject["author"] as? String
-                            latestNews.title  = retrievedObject["title"] as? String
-                            latestNews.description = retrievedObject["description"] as? String
-                            latestNews.url = retrievedObject["url"] as? String
-                            latestNews.urlToImage = retrievedObject["urlToImage"] as? String
-                            latestNews.publishedAt = retrievedObject["publishedAt"] as? String
-                            
-                            
-                            self.news.append(latestNews)
+                            let latestNews = News(dictionary: retrievedObject)
+                            self.news.append(latestNews!)
                         }
+                        
                         
                         
                         DispatchQueue.main.async {
@@ -190,6 +180,10 @@ class SelectedCategoryVC: UIViewController {
 }
 
 extension SelectedCategoryVC: KolodaViewDelegate {
+    
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
+        return [.left, .right, .down]
+    }
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         kolodaView.resetCurrentCardIndex()

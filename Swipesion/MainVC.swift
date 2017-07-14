@@ -212,12 +212,12 @@ class MainVC: UIViewController {
                         
                         for retrievedObject in getCategory {
                             
-                            let latestNews = News()
+                            let latestNews = News(dictionary: retrievedObject)
                             
-                            latestNews.nid = retrievedObject["id"] as? String
-                            latestNews.category = retrievedObject["category"] as? String
+                            latestNews?.nid = retrievedObject["id"] as? String
+                            latestNews?.category = retrievedObject["category"] as? String
                             
-                            self.interest.append(latestNews)
+                            self.interest.append(latestNews!)
                         }
                         
                         DispatchQueue.main.async {

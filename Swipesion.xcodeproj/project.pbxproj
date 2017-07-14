@@ -30,7 +30,6 @@
 		C7E88FBA1F174D1A00CA4478 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FB91F174D1A00CA4478 /* News.swift */; };
 		C7E88FBC1F174F6100CA4478 /* SelectedNewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FBB1F174F6100CA4478 /* SelectedNewsVC.swift */; };
 		C7E88FC01F17C20800CA4478 /* SavedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FBF1F17C20800CA4478 /* SavedNewsCell.swift */; };
-		C7E88FC41F18829000CA4478 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88FC31F18829000CA4478 /* Data.swift */; };
 		E5BE607C1F176C2E00F44858 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607B1F176C2E00F44858 /* SWRevealViewController.m */; };
 		E5BE607E1F17BD2C00F44858 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607D1F17BD2C00F44858 /* SettingsVC.swift */; };
 		E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607F1F17BD8700F44858 /* SlideMenuVC.swift */; };
@@ -64,7 +63,6 @@
 		C7E88FB91F174D1A00CA4478 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C7E88FBB1F174F6100CA4478 /* SelectedNewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedNewsVC.swift; sourceTree = "<group>"; };
 		C7E88FBF1F17C20800CA4478 /* SavedNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedNewsCell.swift; sourceTree = "<group>"; };
-		C7E88FC31F18829000CA4478 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E5BE60791F176C2C00F44858 /* Swipesion-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swipesion-Bridging-Header.h"; sourceTree = "<group>"; };
 		E5BE607A1F176C2E00F44858 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E5BE607B1F176C2E00F44858 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				C7E88FB91F174D1A00CA4478 /* News.swift */,
-				C7E88FC31F18829000CA4478 /* Data.swift */,
 				C7E88F9B1F14ABD400CA4478 /* CircleView.swift */,
 				E5BE607A1F176C2E00F44858 /* SWRevealViewController.h */,
 				E5BE607B1F176C2E00F44858 /* SWRevealViewController.m */,
@@ -332,7 +329,6 @@
 				E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */,
 				C7E88FAC1F174B1B00CA4478 /* CustomOverlayView.swift in Sources */,
 				C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */,
-				C7E88FC41F18829000CA4478 /* Data.swift in Sources */,
 				C7E88FC01F17C20800CA4478 /* SavedNewsCell.swift in Sources */,
 				C7E88FA61F14D73A00CA4478 /* SavedNewsVC.swift in Sources */,
 			);

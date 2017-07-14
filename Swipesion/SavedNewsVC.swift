@@ -18,10 +18,11 @@ class SavedNewsVC: UIViewController {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
+            
         }
     }
     
-    var storeSavedLinks : [Data] = []
+    var storeSavedLinks : [News] = []
     
     let currentUserID = Auth.auth().currentUser?.uid
     let ref = Database.database().reference()
@@ -64,7 +65,7 @@ class SavedNewsVC: UIViewController {
     func getSavedLinks(_ linkID : String){
         
         ref.child("savedLinks").child(linkID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let data = Data(snapshot: snapshot){
+            if let data = News(snapshot: snapshot){
 
                 self.storeSavedLinks.append(data)
                 //self.storeSavedLinks.sort(by: {$0.publishedAt > $1.publishedAt})
@@ -94,11 +95,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
             let imageURL = URL(string: url)
             cell.cellImageView.sd_setImage(with: imageURL)
         }
-        
-        DispatchQueue.main.async {
-            tableView.reloadData()
-        }
-        
+    
         
         return cell
     }
@@ -111,22 +108,23 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectedNewsVC") as! SelectedNewsVC
         
-        //vc.getNews = currentRow
+        vc.getNews = currentRow
         
         self.navigationController?.pushViewController(vc, animated: true)
         
         
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    
         if editingStyle == .delete {
             
             self.storeSavedLinks.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
+            
+            
+            
         }
     }
 }

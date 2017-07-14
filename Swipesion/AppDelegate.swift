@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func displayMainScreen(){
+        
         let authStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainVC = authStoryboard.instantiateViewController(withIdentifier: "UIMainNC")
         let navController = UINavigationController()

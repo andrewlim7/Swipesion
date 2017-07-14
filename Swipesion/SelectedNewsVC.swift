@@ -35,8 +35,8 @@ class SelectedNewsVC: UIViewController {
         }
     }
     
-    var getNews: News?
-    var receiveNews : Data?
+    var getNews : News?
+    
     let currentUserID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
@@ -59,7 +59,28 @@ class SelectedNewsVC: UIViewController {
     func saveLinkButtonTapped(_ sender: Any){
         
         if currentUserID != nil {
+            let databaseRef = Database.database().reference()
             
+            guard
+                let uid = Auth.auth().currentUser?.uid,
+                let saveNews = getNews
+                else { return }
+            
+            let param : [String: Any] = ["userID": uid,
+                                         "title": saveNews.title ?? "",
+                                         "description": saveNews.description ?? "",
+                                         "author": saveNews.author ?? "",
+                                         "url": saveNews.url ?? "",
+                                         "urlToImage": saveNews.urlToImage ?? "",
+                                         "publishAt":saveNews.publishedAt ?? ""]
+            
+            let getRef = databaseRef.child("savedLinks").childByAutoId()
+            getRef.setValue(param)
+            
+            let currentSID = getRef.key
+            
+            let updateUserSID = databaseRef.child("users").child(uid).child("links")
+            updateUserSID.updateChildValues([currentSID:true])
         }
         
     }
