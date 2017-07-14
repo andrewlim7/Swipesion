@@ -36,6 +36,7 @@ class SelectedNewsVC: UIViewController {
     }
     
     var getNews: News?
+    var receiveNews : Data?
     let currentUserID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
