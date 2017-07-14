@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
 
-class SavedNewsVC: UIViewController {
+class SavedNewsVC: UIViewController, UISearchBarDelegate {
     
 
     @IBOutlet weak var tableView: UITableView!{
@@ -22,13 +22,12 @@ class SavedNewsVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var storeSavedLinks : [News] = []
     
     let currentUserID = Auth.auth().currentUser?.uid
     let ref = Database.database().reference()
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
