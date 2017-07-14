@@ -18,5 +18,5 @@ class News {
     var publishedAt: String?
     var nid: String?
     var category: String?
-    var uniqueID : String?
+    
 }

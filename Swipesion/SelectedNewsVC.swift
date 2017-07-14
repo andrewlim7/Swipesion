@@ -58,11 +58,7 @@ class SelectedNewsVC: UIViewController {
     func saveLinkButtonTapped(_ sender: Any){
         
         if currentUserID != nil {
-            if let userID = currentUserID {
-                let ref = Database.database().reference()
-                //ref.child("users").child(userID).child("savedLinks").updateChildValues([: true])
-                
-            }
+            
         }
         
     }

@@ -10,7 +10,11 @@ import UIKit
 
 class SlideMenuVC: UIViewController {
     
-    @IBOutlet weak var savedNewsButton: UIButton!
+    @IBOutlet weak var savedNewsButton: UIButton!{
+        didSet{
+            savedNewsButton.addTarget(self, action: #selector(didTappedSavedNewsButton(_:)), for: .touchUpInside)
+        }
+    }
     @IBOutlet weak var settingsButton: UIButton! {
         didSet{
             settingsButton.addTarget(self, action: #selector(didTappedSettingsButton(_ :)), for: .touchUpInside)
@@ -23,13 +27,20 @@ class SlideMenuVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    func didTappedSavedNewsButton(_ sender : Any){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as? SavedNewsVC
+
+        self.present(vc!, animated: true, completion: nil)
+    }
 
     func didTappedSettingsButton(_ sender: Any) {
     
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let settingsVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC")
-        self.present(settingsVC, animated: true, completion: nil)
-    
+        let settingsVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC
+        self.present(settingsVC!, animated: true, completion: nil)
+        
     
     }
 }

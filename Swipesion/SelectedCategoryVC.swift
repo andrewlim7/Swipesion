@@ -273,9 +273,7 @@ extension SelectedCategoryVC: KolodaViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
             
         } else if direction == SwipeResultDirection.down {
-            
-            
-            
+        
             let databaseRef = Database.database().reference()
             
             guard
@@ -284,8 +282,7 @@ extension SelectedCategoryVC: KolodaViewDataSource {
             
             let sendNews = self.news[index]
             
-            
-            var param : [String: Any] = ["userID": uid,
+            let param : [String: Any] = ["userID": uid,
                                          "title": sendNews.title ?? "",
                                          "description": sendNews.description ?? "",
                                          "author": sendNews.author ?? "",
@@ -293,30 +290,13 @@ extension SelectedCategoryVC: KolodaViewDataSource {
                                          "urlToImage": sendNews.urlToImage ?? "",
                                          "publishAt":sendNews.publishedAt ?? ""]
             
-            
-            
-            
-            databaseRef.child("savedLinks").childByAutoId()
-            databaseRef.setValue(param)
-            
-            let currentSID = databaseRef.key
-            
-            let updateUserSID = databaseRef.child(uid).child("links")
-            updateUserSID.updateChildValues([currentSID:true])
-            
-            
-            
-            //storeNews.append(sendNews)
-            
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as! SavedNewsVC
-            
-            vc.savedLinks = sendNews
-            //vc.storeSavedLinks = storeNews
-            
-            //self.navigationController?.pushViewController(vc, animated: true)
+            let getRef = databaseRef.child("savedLinks").childByAutoId()
+            getRef.setValue(param)
 
+            let currentSID = getRef.key
+            
+            let updateUserSID = databaseRef.child("users").child(uid).child("links")
+            updateUserSID.updateChildValues([currentSID:true])
         }
         
     }
