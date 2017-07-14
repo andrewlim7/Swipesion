@@ -20,8 +20,6 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var menuBtn: UIBarButtonItem! 
 
-    
-    
     @IBOutlet weak var button1: MARoundButton!{
         didSet{
             button1.corner = 30
