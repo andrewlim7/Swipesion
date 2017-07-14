@@ -18,7 +18,8 @@ class MainVC: UIViewController {
     var interest: [News] = []
     var filteredCategory: [News] = []
 
-    @IBOutlet weak var menuBtn: UIBarButtonItem! 
+    
+    @IBOutlet weak var menuBtn: UIButton!
 
     @IBOutlet weak var button1: MARoundButton!{
         didSet{
@@ -99,6 +100,10 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         getNewsID()
         showMenu()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func button1Tapped(_ sender: Any){
@@ -244,14 +249,15 @@ class MainVC: UIViewController {
         
         if revealViewController() != nil {
             
-            menuBtn.target = revealViewController()
-            menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+            menuBtn.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            //menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
             revealViewController().rearViewRevealWidth = 275
             
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
             
             
         }
+        
     }
     
 }
