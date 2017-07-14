@@ -18,13 +18,17 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
         didSet{
             tableView.dataSource = self
             tableView.delegate = self
-            
         }
     }
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!{
+        didSet{
+            searchBar.delegate = self
+        }
+    }
     
     var storeSavedLinks : [News] = []
+    var filteredLinks : [News] = []
     
     let currentUserID = Auth.auth().currentUser?.uid
     let ref = Database.database().reference()
@@ -36,12 +40,13 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
+    
     
     func fetchSavedLinks(){
         
@@ -60,8 +65,6 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
                 })
             }
         }
-        
-        
     }
     
     func getSavedLinks(_ linkID : String){
@@ -71,9 +74,11 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
 
                 self.storeSavedLinks.append(data)
                 //self.storeSavedLinks.sort(by: {$0.publishedAt > $1.publishedAt})
-                self.tableView.reloadData()
+                self.filteredLinks = self.storeSavedLinks
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
-            
         })
     }
 
@@ -82,48 +87,52 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
 extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storeSavedLinks.count
+            return filteredLinks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : SavedNewsCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SavedNewsCell else { return UITableViewCell() }
         
-        let currentRow = storeSavedLinks[indexPath.row]
-
-        cell.titleLabel.text = currentRow.title
-        cell.dateLabel.text = currentRow.publishedAt
+            let currentRow = filteredLinks[indexPath.row]
+            
+            cell.titleLabel.text = currentRow.title
+            cell.dateLabel.text = currentRow.publishedAt
+            
+            if let url = currentRow.urlToImage {
+                let imageURL = URL(string: url)
+                cell.cellImageView.sd_setImage(with: imageURL)
+            }
         
-        if let url = currentRow.urlToImage {  
-            let imageURL = URL(string: url)
-            cell.cellImageView.sd_setImage(with: imageURL)
-        }
+            return cell
+    }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredLinks = searchText.isEmpty ? storeSavedLinks : storeSavedLinks.filter{ (item: News) -> Bool in
+            return item.title?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        } // ask kh why cannot equal back to the same array
         
-        return cell
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let currentRow = storeSavedLinks[indexPath.row]
-        
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SelectedNewsVC") as! SelectedNewsVC
-        
-        vc.getNews = currentRow
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
+
+            let currentRow = filteredLinks[indexPath.row]
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SelectedNewsVC") as! SelectedNewsVC
+            
+            vc.getNews = currentRow
+            
+            self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
         if editingStyle == .delete {
             
-            let currentRow = self.storeSavedLinks[indexPath.row]
-            
-            self.storeSavedLinks.remove(at: indexPath.row)
+            let currentRow = self.filteredLinks[indexPath.row]
+                
+            self.filteredLinks.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             
             
@@ -142,6 +151,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
             updateUserSID.removeValue()
             
             self.tableView.reloadData()
+            
         }
     }
 }
