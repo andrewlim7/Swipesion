@@ -73,7 +73,6 @@ class SavedNewsVC: UIViewController {
             
         })
     }
-    
 
 }
 
@@ -106,6 +105,28 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let currentRow = storeSavedLinks[indexPath.row]
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SelectedNewsVC") as! SelectedNewsVC
+        
+        //vc.getNews = currentRow
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            self.storeSavedLinks.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
+        }
+    }
 }
