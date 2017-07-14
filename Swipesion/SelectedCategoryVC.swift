@@ -53,8 +53,7 @@ class SelectedCategoryVC: UIViewController {
         
         for title in getNewsID {
             
-            categoryTitleLabel.text = title.category
-            
+            categoryTitleLabel.text = title.category?.capitalized
         }
         
         newsOnCategory()

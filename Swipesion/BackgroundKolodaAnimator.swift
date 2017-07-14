@@ -22,7 +22,7 @@ class BackgroundKolodaAnimator: KolodaViewAnimator {
         
         let frameAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
         frameAnimation?.springBounciness = 9
-        frameAnimation?.springSpeed = 16
+        frameAnimation?.springSpeed = 50
         frameAnimation?.toValue = NSValue(cgRect: frame)
         if let completion = completion {
             frameAnimation?.completionBlock = { _, finished in
