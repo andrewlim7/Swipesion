@@ -119,11 +119,34 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
     
         if editingStyle == .delete {
             
+            let currentRow = self.storeSavedLinks[indexPath.row]
+            
             self.storeSavedLinks.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
             
+            let databaseRef = Database.database().reference()
             
+            guard
+                let uid = Auth.auth().currentUser?.uid
+                else { return }
+            
+            
+            let param : [String: Any] = ["userID": uid,
+                                         "title": currentRow.title ?? "",
+                                         "description": currentRow.description ?? "",
+                                         "author": currentRow.author ?? "",
+                                         "url": currentRow.url ?? "",
+                                         "urlToImage": currentRow.urlToImage ?? "",
+                                         "publishAt":currentRow.publishedAt ?? ""]
+            
+            let getRef = databaseRef.child("savedLinks").childByAutoId()
+            getRef.setValue(param)
+            
+            let currentSID = getRef.key
+            
+            let updateUserSID = databaseRef.child("users").child(uid).child("links")
+            updateUserSID.updateChildValues([currentSID:true])
             
         }
     }
