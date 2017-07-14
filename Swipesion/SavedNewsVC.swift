@@ -27,6 +27,9 @@ class SavedNewsVC: UIViewController {
     let currentUserID = Auth.auth().currentUser?.uid
     let ref = Database.database().reference()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSavedLinks()
