@@ -184,7 +184,7 @@ class MainVC: UIViewController {
         
         let urlSession = URLSession(configuration: .default)
         
-        let url = URL(string: "https://newsapi.org/v1/sources?&apiKey=22f2516b0fc845818b266905e56cf205")
+        let url = URL(string: "https://newsapi.org/v1/sources?language=en&apiKey=22f2516b0fc845818b266905e56cf205")
         
         var urlRequest = URLRequest(url: url!)
         
