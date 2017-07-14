@@ -10,6 +10,8 @@ import UIKit
 import Koloda
 import pop
 import SDWebImage
+import FirebaseAuth
+import FirebaseDatabase
 
 class SelectedCategoryVC: UIViewController {
 
@@ -17,12 +19,19 @@ class SelectedCategoryVC: UIViewController {
     
     var getNewsID: [News] = []
     
+    var storeNews : [News] = []
+    
     var session: URLSession = URLSession(configuration: .default)
     
     @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!{
         didSet{
             backButton.addTarget(self, action: #selector(backButtonTapped(_:)), for: .touchUpInside)
+        }
+    }
+    @IBOutlet weak var saveLinkButton: UIButton!{
+        didSet{
+            saveLinkButton.addTarget(self, action: #selector(saveLinkButtonTapped(_:)), for: .touchUpInside)
         }
     }
     
@@ -75,6 +84,10 @@ class SelectedCategoryVC: UIViewController {
     
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
+    }
+    
+    func saveLinkButtonTapped(_ sender: Any){
+        kolodaView?.swipe(.down)
     }
 
     func backButtonTapped(_ sender: Any){
@@ -259,6 +272,51 @@ extension SelectedCategoryVC: KolodaViewDataSource {
             
             self.navigationController?.pushViewController(vc, animated: true)
             
+        } else if direction == SwipeResultDirection.down {
+            
+            
+            
+            let databaseRef = Database.database().reference()
+            
+            guard
+                let uid = Auth.auth().currentUser?.uid
+                else { return }
+            
+            let sendNews = self.news[index]
+            
+            
+            var param : [String: Any] = ["userID": uid,
+                                         "title": sendNews.title ?? "",
+                                         "description": sendNews.description ?? "",
+                                         "author": sendNews.author ?? "",
+                                         "url": sendNews.url ?? "",
+                                         "urlToImage": sendNews.urlToImage ?? "",
+                                         "publishAt":sendNews.publishedAt ?? ""]
+            
+            
+            
+            
+            databaseRef.child("savedLinks").childByAutoId()
+            databaseRef.setValue(param)
+            
+            let currentSID = databaseRef.key
+            
+            let updateUserSID = databaseRef.child(uid).child("links")
+            updateUserSID.updateChildValues([currentSID:true])
+            
+            
+            
+            //storeNews.append(sendNews)
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as! SavedNewsVC
+            
+            vc.savedLinks = sendNews
+            //vc.storeSavedLinks = storeNews
+            
+            //self.navigationController?.pushViewController(vc, animated: true)
+
         }
         
     }

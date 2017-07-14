@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 import SafariServices
+import FirebaseAuth
+import FirebaseDatabase
 
 class SelectedNewsVC: UIViewController {
     
@@ -27,7 +29,14 @@ class SelectedNewsVC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var saveLinkButton: UIButton!{
+        didSet{
+            saveLinkButton.addTarget(self, action: #selector(saveLinkButtonTapped(_:)), for: .touchUpInside)
+        }
+    }
+    
     var getNews: News?
+    let currentUserID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +51,18 @@ class SelectedNewsVC: UIViewController {
             let displayURL = URL(string:url)
             
             imageView.sd_setImage(with: displayURL)
+        }
+        
+    }
+    
+    func saveLinkButtonTapped(_ sender: Any){
+        
+        if currentUserID != nil {
+            if let userID = currentUserID {
+                let ref = Database.database().reference()
+                //ref.child("users").child(userID).child("savedLinks").updateChildValues([: true])
+                
+            }
         }
         
     }
