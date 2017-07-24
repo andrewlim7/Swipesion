@@ -54,7 +54,7 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
             
             if let user = currentUserID {
                 
-                ref.child("users").child(user).child("links").observe(.value, with: { (snapshot) in
+                ref.child("users").child(user).child("links").observeSingleEvent(of: .value, with: { (snapshot) in
                     guard let dictionary = snapshot.value as? [String:Any] else {return}
                     
                     self.storeSavedLinks = []
@@ -81,6 +81,14 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
             }
         })
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredLinks = searchText.isEmpty ? storeSavedLinks : storeSavedLinks.filter{ (item: News) -> Bool in
+            return item.title?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        tableView.reloadData()
+    }
 
 }
 
@@ -97,7 +105,10 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
             
             cell.titleLabel.text = currentRow.title
             cell.dateLabel.text = currentRow.publishedAt
-            
+        
+            cell.cellImageView.sd_setShowActivityIndicatorView(true)
+            cell.cellImageView.sd_setIndicatorStyle(.whiteLarge)
+        
             if let url = currentRow.urlToImage {
                 let imageURL = URL(string: url)
                 cell.cellImageView.sd_setImage(with: imageURL)
@@ -105,14 +116,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
         
             return cell
     }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredLinks = searchText.isEmpty ? storeSavedLinks : storeSavedLinks.filter{ (item: News) -> Bool in
-            return item.title?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        } // ask kh why cannot equal back to the same array
-        
-        tableView.reloadData()
-    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
@@ -150,7 +154,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
             let updateUserSID = databaseRef.child("users").child(uid).child("links").child(linkID)
             updateUserSID.removeValue()
             
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
             
         }
     }

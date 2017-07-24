@@ -107,7 +107,6 @@ class SelectedCategoryVC: UIViewController {
                 }
                 
                 //}
-                
             }
         }
     }
@@ -149,8 +148,6 @@ class SelectedCategoryVC: UIViewController {
                             guard let latestNews = News(dictionary: retrievedObject) else { return }
                             self.news.append(latestNews)
                         }
-                        
-                        
                         
                         DispatchQueue.main.async {
                             
@@ -232,6 +229,9 @@ extension SelectedCategoryVC: KolodaViewDataSource {
         let customImageCard = CustomImageView(frame: koloda.frame)
         
         let currentIndex = self.news[index]
+        
+        customImageCard.sd_setShowActivityIndicatorView(true)
+        customImageCard.sd_setIndicatorStyle(.whiteLarge)
         
         if let url = currentIndex.urlToImage {
             

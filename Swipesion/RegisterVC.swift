@@ -54,10 +54,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             signUpButton.addTarget(self, action: #selector(didTapSignUpButton(_:)), for: .touchUpInside)
         }
     }
-    
-    @IBOutlet weak var selectProfileButton: UIButton! {
+    @IBOutlet weak var uploadButton: UIButton!{
         didSet{
-            selectProfileButton.addTarget(self, action: #selector(didTapSelectProfileButton(_:)), for: .touchUpInside)
+            uploadButton.addTarget(self, action: #selector(didTapUploadButton(_:)), for: .touchUpInside)
         }
     }
     
@@ -76,11 +75,71 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(sender:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         imageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+    }
+    
+    func didTapUploadButton(_ sender : Any){
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        
+        let alertController = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                pickerController.sourceType = .camera
+                self.present(pickerController, animated: true, completion: nil)
+            } else {
+                let alertVC = UIAlertController(title: "No Camera",message: "Sorry, this device has no camera",preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK",style:.default,handler: nil)
+                alertVC.addAction(okAction)
+                self.present(alertVC, animated: true,completion: nil)
+                return
+            }
+        }
+        
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            pickerController.sourceType = .photoLibrary
+            self.present(pickerController, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            if self.view.frame.origin.y == 0 {
+                
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            if self.view.frame.origin.y != 0 {
+                
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
         
     }
     
@@ -116,8 +175,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
-
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -126,17 +183,17 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        usernameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
+        if textField == usernameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField{
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField{
+            confirmPasswordTextField.becomeFirstResponder()
+        } else if textField == confirmPasswordTextField{
+            confirmPasswordTextField.resignFirstResponder()
+            confirmPasswordTextField.returnKeyType = .done
+        }
         return true
-    }
-    
-    func didTapSelectProfileButton(_ sender: Any){
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        present(pickerController, animated: true, completion: nil)
     }
     
     func didTapSignUpButton(_ sender: Any){
@@ -232,12 +289,11 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     func warningAlert(warningMessage: String){
         let alertController = UIAlertController(title: "Error", message: warningMessage, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(ok)
         
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
-        
     }
 
 }
