@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--OnboardingVC-->
+        <scene sceneID="Zvd-jo-Ok3">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingVC" id="1hp-o9-8gG" customClass="OnboardingVC" customModule="Swipesion" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fkp-Fr-b3i"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pah-E2-S49"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="esd-oa-806">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vGv-IQ-Xdt" customClass="OnboardingView" customModule="Swipesion" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vo-8G-kkq">
+                                <rect key="frame" x="120" y="500" width="136" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="u1R-wd-VWn"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vGv-IQ-Xdt" firstAttribute="bottom" secondItem="Pah-E2-S49" secondAttribute="top" id="4DB-z6-7x4"/>
+                            <constraint firstItem="vGv-IQ-Xdt" firstAttribute="leading" secondItem="esd-oa-806" secondAttribute="leading" id="HjG-wp-XEB"/>
+                            <constraint firstAttribute="trailing" secondItem="vGv-IQ-Xdt" secondAttribute="trailing" id="atK-Fc-hcT"/>
+                            <constraint firstItem="vGv-IQ-Xdt" firstAttribute="centerX" secondItem="8vo-8G-kkq" secondAttribute="centerX" id="b8w-PG-IAD"/>
+                            <constraint firstItem="vGv-IQ-Xdt" firstAttribute="top" secondItem="esd-oa-806" secondAttribute="top" id="nVj-p5-7la"/>
+                            <constraint firstItem="Pah-E2-S49" firstAttribute="top" secondItem="8vo-8G-kkq" secondAttribute="bottom" constant="137" id="nqb-4m-Gzn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tUO-hG-XTS"/>
+                    <connections>
+                        <outlet property="onBoardingView" destination="vGv-IQ-Xdt" id="iFS-97-GGT"/>
+                        <outlet property="startedBtn" destination="8vo-8G-kkq" id="0DO-Ht-WBV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G8Q-Bd-aae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887.20000000000005" y="150.67466266866569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Uud-uE-mBn">
+            <objects>
+                <navigationController storyboardIdentifier="OnboardingNavi" automaticallyAdjustsScrollViewInsets="NO" id="OmU-Xy-XQp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8dZ-wh-Rwd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1hp-o9-8gG" kind="relationship" relationship="rootViewController" id="bsM-6K-uxM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Vo-Ar-GoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-52" y="150.67466266866569"/>
+        </scene>
+    </scenes>
+</document>

@@ -47,19 +47,11 @@ class OnboardingVC: UIViewController {
     }
     
     func startedBtnTapped(_ sender: Any) {
-        
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(true, forKey: "onboarding Complete")
-        
-        userDefaults.synchronize()
-        
-        
         let storyboard = UIStoryboard(name: "Auth", bundle: Bundle.main)
-        let registerVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        self.navigationController?.pushViewController(registerVC, animated: true)
+        let nextVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        GeneralSettings.saveOnboardingFinished()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
 
 }
 

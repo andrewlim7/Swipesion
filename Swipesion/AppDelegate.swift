@@ -25,10 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        if GeneralSettings.isOnboardingFinished() == false {
+            let authStoryboard = UIStoryboard(name: "Onboarding", bundle: Bundle.main)
+            let onboardingVC = authStoryboard.instantiateViewController(withIdentifier: "OnboardingNavi")
+            window?.rootViewController = onboardingVC
+        }
+        
         handleUser(Auth.auth().currentUser)
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.handleUser(user)
         }
+    
         
         return true
     }
@@ -40,6 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleUser(_ user : User?){
+        if GeneralSettings.isOnboardingFinished() == false {
+            return
+        }
+        
+        
         if user != nil {
             self.displayMainScreen()
             return;
