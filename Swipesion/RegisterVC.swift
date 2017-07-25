@@ -15,12 +15,12 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var imageView: UIImageView!
-
+    
     @IBOutlet weak var usernameTextField: UITextField!{
         didSet{
             usernameTextField.placeholder = "Insert name"
             usernameTextField.delegate = self
-
+            
         }
     }
     
@@ -30,7 +30,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             emailTextField.delegate = self
         }
     }
-        
+    
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
             passwordTextField.placeholder = "Insert password"
@@ -62,7 +62,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     var isImageSelected : Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSpinner()
@@ -78,9 +78,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -117,16 +117,17 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
-
+        
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            if self.view.frame.origin.y == 0 {
+        if confirmPasswordTextField.isEditing || passwordTextField.isEditing{
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 
-                self.view.frame.origin.y -= keyboardSize.height
+                if self.view.frame.origin.y == 0 {
+                    
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }
@@ -162,7 +163,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 return
             }
         }
-
+        
         let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (action) in
             pickerController.sourceType = .photoLibrary
             self.present(pickerController, animated: true, completion: nil)
@@ -240,7 +241,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpg"
                 
-                let data = UIImageJPEGRepresentation(self.imageView.image!, 0.8)
+                let data = UIImageJPEGRepresentation(self.imageView.image!, 0.2)
                 
                 storageRef.child("\(uid).jpg").putData(data!, metadata: metadata) { (newMeta, error) in
                     if (error != nil) {
@@ -251,23 +252,29 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                         defer{
                             self.dismiss(animated: true, completion: nil) //so the return function will return this
                         }
-                        
-                        if let foundError = error {
-                            print(foundError.localizedDescription)
-                            return
-                        }
-                        
-                        guard let imageURL = newMeta?.downloadURLs?.first?.absoluteString else {
-                            return
-                        }
-                        
-                        let param : [String : Any] = ["name": name,
-                                                      "email": email,
-                                                      "profileImageURL": imageURL]
-                        
-                        let ref = Database.database().reference().child("users")
-                        ref.child(uid).setValue(param)
                     }
+                    
+                    if let foundError = error {
+                        print(foundError.localizedDescription)
+                        return
+                    }
+                    
+                    guard let imageURL = newMeta?.downloadURLs?.first?.absoluteString else {
+                        return
+                    }
+                    
+                    let param : [String : Any] = ["name": name,
+                                                  "email": email,
+                                                  "profileImageURL": imageURL]
+                    
+                    let ref = Database.database().reference().child("users")
+                    ref.child(uid).setValue(param)
+                    
+                    
+                    UserDefaults.standard.setValue(uid, forKey: "currentUID")
+                    UserDefaults.standard.setValue(name, forKey: "currentUserName")
+                    let url = URL(string:  imageURL)
+                    UserDefaults.standard.set(url, forKey: "currentUserProfileImage")
                 }
                 
                 self.myActivityIndicator.stopAnimating()
@@ -295,7 +302,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
     }
-
+    
 }
 
 extension RegisterVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {

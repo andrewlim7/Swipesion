@@ -101,12 +101,28 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                 }
                 
                 print("User exist \(user?.uid ?? "")")
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let mainVC = storyboard.instantiateViewController(withIdentifier: "MainVC")
-                self.present(mainVC, animated: true, completion: nil)
+                
+                self.fetchUser()
                 self.myActivityIndicator.stopAnimating()
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
+            })
+            
+        }
+    }
+    
+    func fetchUser(){
+        let ref = Database.database().reference()
+        
+        if let userID = Auth.auth().currentUser?.uid {
+            
+            
+            ref.child("users").child(userID).observe(.value, with: { (snapshot) in
+                if let data = UserProfile(snapshot: snapshot){
+                    UserDefaults.standard.setValue(data.userID, forKey: "currentUID")
+                    UserDefaults.standard.setValue(data.name, forKey: "currentUserName")
+                    UserDefaults.standard.set(data.profileImageURL, forKey: "currentUserProfileImage")
+                }
             })
         }
     }

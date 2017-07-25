@@ -216,12 +216,14 @@
                     <navigationItem key="navigationItem" id="nAJ-4Y-vx2"/>
                     <connections>
                         <outlet property="closeButton" destination="w2M-RO-OLu" id="GXb-uI-Mcq"/>
+                        <outlet property="imageView" destination="oiK-Hn-eUY" id="wjf-kF-J9F"/>
                         <outlet property="signOutButton" destination="uMh-yc-C9s" id="3Qe-BZ-5Zb"/>
+                        <outlet property="usernameLabel" destination="L5x-dZ-3GG" id="cKi-vF-Bwp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7AH-AA-nol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="-655"/>
+            <point key="canvasLocation" x="732" y="-655"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="dqo-XR-IJ1">
@@ -420,8 +422,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="fva-of-IKj" id="c4b-DG-BFx"/>
                         <outlet property="savedNewsButton" destination="vbj-dc-S7C" id="aVc-Eb-djU"/>
                         <outlet property="settingsButton" destination="NrH-uo-thK" id="oQN-Ec-Mdl"/>
+                        <outlet property="usernameLabel" destination="j8V-eF-KYv" id="eUj-mx-eT0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OA4-d1-2pS" userLabel="First Responder" sceneMemberID="firstResponder"/>

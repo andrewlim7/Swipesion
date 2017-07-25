@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class SlideMenuVC: UIViewController {
     
@@ -22,10 +25,18 @@ class SlideMenuVC: UIViewController {
         }
     }
 
+    @IBOutlet weak var imageView: CircleView!
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    let currentUserID = UserDefaults.standard.string(forKey: "currentUID")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
+        imageView.sd_setImage(with: UserDefaults.standard.url(forKey: "currentUserProfileImage"))
     }
     
     func didTappedSavedNewsButton(_ sender : Any){

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 import FBSDKLoginKit
 
 
@@ -25,10 +26,14 @@ class SettingsVC: UIViewController {
             signOutButton.addTarget(self, action: #selector(didTapSignOutButton(_:)), for: .touchUpInside)
         }
     }
+    
+    
+    @IBOutlet weak var imageView: CircleView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    var receiveUserProfile : UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     func didTappedCloseButton() {
@@ -40,6 +45,10 @@ class SettingsVC: UIViewController {
     func didTapSignOutButton(_ sender: Any){
         let firebaseAuth = Auth.auth()
         let loginManager = FBSDKLoginManager() //FB system logout
+        
+        UserDefaults.standard.setValue(nil, forKey: "currentUID")
+        UserDefaults.standard.setValue(nil, forKey: "currentUserName")
+        UserDefaults.standard.set(nil, forKey: "currentUserProfileImage")
         
         do {
             try firebaseAuth.signOut()
