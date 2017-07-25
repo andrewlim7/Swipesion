@@ -48,7 +48,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     }
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSpinner()
@@ -63,7 +63,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -81,8 +81,8 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         guard
             let email = emailTextField.text,
             let password = passwordTextField.text
-        else {
-            return;
+            else {
+                return;
         }
         
         if emailTextField.text == ""{
@@ -103,6 +103,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                 print("User exist \(user?.uid ?? "")")
                 
                 self.fetchUser()
+                UserDefaults.standard.synchronize()
                 self.myActivityIndicator.stopAnimating()
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
@@ -122,6 +123,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                     UserDefaults.standard.setValue(data.userID, forKey: "currentUID")
                     UserDefaults.standard.setValue(data.name, forKey: "currentUserName")
                     UserDefaults.standard.set(data.profileImageURL, forKey: "currentUserProfileImage")
+                    UserDefaults.standard.set(data.fbID, forKey: "currentUserFacebookID")
                 }
             })
         }
@@ -164,17 +166,13 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
                                 print("\(String(describing: error))")
                                 return
                             }
-                            
+                            self.fetchUser()
                             // no error, so it means we've saved the user into our firebase database successfully
                             print("Save the user successfully into Firebase database")
                         })
                     }
                 })
             }
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
-            self.present(mainVC, animated: true, completion: nil)
         }
     }
     
@@ -196,9 +194,6 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
             passwordTextField.resignFirstResponder()
         }
         return true
-//        emailTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        return true
     }
     
     func warningAlert(warningMessage: String){
@@ -217,5 +212,5 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         alertController.addAction(ok)
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
 }

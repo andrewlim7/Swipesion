@@ -24,7 +24,7 @@ class SlideMenuVC: UIViewController {
             
         }
     }
-
+    
     @IBOutlet weak var imageView: CircleView!
     
     
@@ -36,23 +36,43 @@ class SlideMenuVC: UIViewController {
         super.viewDidLoad()
         
         usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
-        imageView.sd_setImage(with: UserDefaults.standard.url(forKey: "currentUserProfileImage"))
+        
+        if let profileImage = UserDefaults.standard.url(forKey: "currentUserProfileImage") {
+            imageView.sd_setImage(with: profileImage)
+        }
+        
+        if let fbProfileID = UserDefaults.standard.string(forKey: "currentUserFacebookID") {
+            
+            if let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fbProfileID)/picture?type=large&return_ssl_resources=1") {
+                self.imageView.sd_setImage(with: fbProfileURL as URL)
+            }
+        }
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func didTappedSavedNewsButton(_ sender : Any){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as? SavedNewsVC
-       // let navController = UINavigationController()
+        // let navController = UINavigationController()
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }
-
+    
     func didTappedSettingsButton(_ sender: Any) {
-    
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let settingsVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC
-        self.present(settingsVC!, animated: true, completion: nil)
         
-    
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let settingsVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+        
+        settingsVC.getUserName = usernameLabel.text
+        settingsVC.getProfileImage = imageView.image
+        
+        self.present(settingsVC, animated: true, completion: nil)
+        
+        
     }
 }

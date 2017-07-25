@@ -30,10 +30,15 @@ class SettingsVC: UIViewController {
     
     @IBOutlet weak var imageView: CircleView!
     @IBOutlet weak var usernameLabel: UILabel!
-    var receiveUserProfile : UserProfile?
+    
+    var getProfileImage : UIImage?
+    var getUserName : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView.image = getProfileImage
+        usernameLabel.text = getUserName
     }
     
     func didTappedCloseButton() {
@@ -49,6 +54,7 @@ class SettingsVC: UIViewController {
         UserDefaults.standard.setValue(nil, forKey: "currentUID")
         UserDefaults.standard.setValue(nil, forKey: "currentUserName")
         UserDefaults.standard.set(nil, forKey: "currentUserProfileImage")
+        UserDefaults.standard.synchronize()
         
         do {
             try firebaseAuth.signOut()

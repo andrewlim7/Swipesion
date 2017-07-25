@@ -275,6 +275,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     UserDefaults.standard.setValue(name, forKey: "currentUserName")
                     let url = URL(string:  imageURL)
                     UserDefaults.standard.set(url, forKey: "currentUserProfileImage")
+                    UserDefaults.standard.synchronize()
                 }
                 
                 self.myActivityIndicator.stopAnimating()
