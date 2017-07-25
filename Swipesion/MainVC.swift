@@ -13,7 +13,7 @@ import FBSDKLoginKit
 import MARoundButton
 
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, SWRevealViewControllerDelegate {
     
     var interest: [News] = []
     var filteredCategory: [News] = []
@@ -100,6 +100,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         getNewsID()
         showMenu()
+        tapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -258,6 +259,43 @@ class MainVC: UIViewController {
             
         }
         
+    }
+    
+    func revealController(revealController: SWRevealViewController!, willMoveToPosition position: FrontViewPosition) {
+        let tagId = 4207868622
+        
+        if revealController.frontViewPosition == FrontViewPosition.right {
+            let lock = self.view.viewWithTag(tagId)
+            UIView.animate(withDuration: 0.25, animations: {
+                lock?.alpha = 0
+            }, completion: {(finished: Bool) in
+                lock?.removeFromSuperview()
+            }
+            )
+            lock?.removeFromSuperview()
+        } else if revealController.frontViewPosition == FrontViewPosition.left {
+            let lock = UIView(frame: self.view.bounds)
+            lock.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            lock.tag = tagId
+            lock.alpha = 0
+            lock.backgroundColor = UIColor.black
+            lock.addGestureRecognizer(UITapGestureRecognizer(target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:))))
+            self.view.addSubview(lock)
+            UIView.animate(withDuration: 0.75, animations: {
+                lock.alpha = 0.333
+            }
+            )
+        }
+    }
+    
+    func tapGesture() {
+    
+        if self.revealViewController() != nil {
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
+    
     }
     
 }
