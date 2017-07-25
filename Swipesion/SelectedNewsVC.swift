@@ -11,10 +11,27 @@ import SDWebImage
 import SafariServices
 import FirebaseAuth
 import FirebaseDatabase
+import Social
 
 class SelectedNewsVC: UIViewController {
     
 
+    @IBOutlet weak var twitterBtn: UIButton! {
+        
+        didSet {
+            
+            twitterBtn.addTarget(self, action: #selector(twitterBtnTapped(_:)), for: .touchUpInside)
+        }
+    }
+    
+    
+    @IBOutlet weak var facebookBtn: UIButton! {
+        
+        didSet {
+            
+            facebookBtn.addTarget(self, action: #selector(facebookBtnTapped(_:)), for: .touchUpInside)
+        }
+    }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -56,6 +73,83 @@ class SelectedNewsVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+    }
+    
+    
+    func twitterBtnTapped(_ sender: Any) {
+        
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
+            
+            let tweetShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            
+            if let url = getNews?.url {
+                
+                if let newUrl = URL(string: url) {
+                    
+                    tweetShare.add(newUrl)
+                }
+            }
+            
+            tweetShare.add(imageView.image)
+            tweetShare.setInitialText((getNews?.title)! + " by SwipeSion")
+            
+            self.present(tweetShare, animated: true, completion: nil)
+            
+            let alert = UIAlertController(title: "Done", message: "Posted to Twitter", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to tweet.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func facebookBtnTapped(_ sender: Any) {
+        
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
+            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+            
+            if let url = getNews?.url {
+                
+                if let newUrl = URL(string: url) {
+                    
+                    fbShare.add(newUrl)
+                }
+            }
+            
+            fbShare.add(imageView.image)
+            fbShare.setInitialText((getNews?.title)! + " by SwipeSion")
+            
+            self.present(fbShare, animated: true, completion: nil)
+            
+        } else {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     func saveLinkButtonTapped(_ sender: Any){
         
         if currentUserID != nil {
@@ -93,11 +187,6 @@ class SelectedNewsVC: UIViewController {
             self.present(controller, animated: true, completion: nil)
             controller.delegate = self
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationController?.isNavigationBarHidden = false
     }
     
 }

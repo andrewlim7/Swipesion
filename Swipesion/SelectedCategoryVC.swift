@@ -64,14 +64,6 @@ class SelectedCategoryVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        
-//        self.news = []
-//
-//        session.invalidateAndCancel()
-//        
-//    }
-    
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
     }
