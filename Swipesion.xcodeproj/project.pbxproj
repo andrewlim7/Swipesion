@@ -10,6 +10,10 @@
 		7AF76077AC11B7C62F997DC7 /* Pods_Swipesion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45697F4EED53DA362E1B63E3 /* Pods_Swipesion.framework */; };
 		81D0DD3C1F27199300E4B25B /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD3B1F27199300E4B25B /* OnboardingVC.swift */; };
 		81D0DD3E1F271A4900E4B25B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD3D1F271A4900E4B25B /* OnboardingView.swift */; };
+		81D0DD401F2729FA00E4B25B /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD3F1F2729FA00E4B25B /* MainCell.swift */; };
+		81D0DD441F272E2500E4B25B /* LinearCardAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD411F272E2500E4B25B /* LinearCardAttributesAnimator.swift */; };
+		81D0DD451F272E2500E4B25B /* AnimatedCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */; };
+		81D0DD461F272E2500E4B25B /* LayoutAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */; };
 		C79976091F25E2830030EEA5 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79976081F25E2830030EEA5 /* UserProfile.swift */; };
 		C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88F7B1F1488D600CA4478 /* AppDelegate.swift */; };
 		C7E88F811F1488D600CA4478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7E88F7F1F1488D600CA4478 /* Main.storyboard */; };
@@ -44,6 +48,10 @@
 		66752F10B7A357F323489C4F /* Pods-Swipesion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipesion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swipesion/Pods-Swipesion.release.xcconfig"; sourceTree = "<group>"; };
 		81D0DD3B1F27199300E4B25B /* OnboardingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		81D0DD3D1F271A4900E4B25B /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		81D0DD3F1F2729FA00E4B25B /* MainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		81D0DD411F272E2500E4B25B /* LinearCardAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearCardAttributesAnimator.swift; sourceTree = "<group>"; };
+		81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedCollectionViewLayout.swift; sourceTree = "<group>"; };
+		81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesAnimator.swift; sourceTree = "<group>"; };
 		C79976081F25E2830030EEA5 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		C7E88F781F1488D600CA4478 /* Swipesion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swipesion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E88F7B1F1488D600CA4478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +132,9 @@
 		C7E88F911F148CDC00CA4478 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				81D0DD411F272E2500E4B25B /* LinearCardAttributesAnimator.swift */,
+				81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */,
+				81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */,
 				81D0DD3D1F271A4900E4B25B /* OnboardingView.swift */,
 				C7E88FB91F174D1A00CA4478 /* News.swift */,
 				C7E88F9B1F14ABD400CA4478 /* CircleView.swift */,
@@ -145,6 +156,7 @@
 				C7E88FA91F174B1B00CA4478 /* CustomImageView.swift */,
 				C7E88FAA1F174B1B00CA4478 /* BackgroundKolodaAnimator.swift */,
 				C7E88FBF1F17C20800CA4478 /* SavedNewsCell.swift */,
+				81D0DD3F1F2729FA00E4B25B /* MainCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -228,7 +240,7 @@
 				TargetAttributes = {
 					C7E88F771F1488D600CA4478 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = DQCNUZZSN6;
+						DevelopmentTeam = 3F9ZJ33XLL;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -323,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E88FA01F14D71400CA4478 /* UserVC.swift in Sources */,
+				81D0DD451F272E2500E4B25B /* AnimatedCollectionViewLayout.swift in Sources */,
 				C7E88FAD1F174B1B00CA4478 /* CustomImageView.swift in Sources */,
 				E5BE607C1F176C2E00F44858 /* SWRevealViewController.m in Sources */,
 				C7E88F961F148D5E00CA4478 /* RegisterVC.swift in Sources */,
@@ -330,14 +343,17 @@
 				E5BE607E1F17BD2C00F44858 /* SettingsVC.swift in Sources */,
 				81D0DD3E1F271A4900E4B25B /* OnboardingView.swift in Sources */,
 				C7E88FBC1F174F6100CA4478 /* SelectedNewsVC.swift in Sources */,
+				81D0DD441F272E2500E4B25B /* LinearCardAttributesAnimator.swift in Sources */,
 				C7E88F9C1F14ABD400CA4478 /* CircleView.swift in Sources */,
 				C7E88FAB1F174B1B00CA4478 /* CustomKolodaView.swift in Sources */,
+				81D0DD461F272E2500E4B25B /* LayoutAttributesAnimator.swift in Sources */,
 				C7E88FA41F14D73000CA4478 /* SelectedCategoryVC.swift in Sources */,
 				C7E88F981F148D8100CA4478 /* MainVC.swift in Sources */,
 				C7E88F901F148CAB00CA4478 /* LoginVC.swift in Sources */,
 				C7E88FAE1F174B1B00CA4478 /* BackgroundKolodaAnimator.swift in Sources */,
 				E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */,
 				C79976091F25E2830030EEA5 /* UserProfile.swift in Sources */,
+				81D0DD401F2729FA00E4B25B /* MainCell.swift in Sources */,
 				C7E88FAC1F174B1B00CA4478 /* CustomOverlayView.swift in Sources */,
 				C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */,
 				81D0DD3C1F27199300E4B25B /* OnboardingVC.swift in Sources */,
@@ -467,10 +483,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = DQCNUZZSN6;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -484,10 +500,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = DQCNUZZSN6;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

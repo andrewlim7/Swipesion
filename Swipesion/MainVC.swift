@@ -17,149 +17,47 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
     
     var interest: [News] = []
     var filteredCategory: [News] = []
-
+    var animator: (LayoutAttributesAnimator, Bool, Int, Int)?
+    var direction: UICollectionViewScrollDirection = .horizontal
+    var categoryTitle:[String] = ["General", "Sport", "Music", "Technology", "Business", "Science and Nature", "Gaming", "Politics", "Entertainment"]
+    var categoryDesc:[String] = ["Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
+                                 "Gummies pudding cupcake gingerbread bear claw marzipan."]
     
     @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var mainCollectionViewCell: UICollectionView! {
+        
+        didSet {
+            
+            mainCollectionViewCell.delegate = self
+            mainCollectionViewCell.dataSource = self
+        }
+    }
+    
 
-    @IBOutlet weak var button1: MARoundButton!{
-        didSet{
-            button1.corner = 30
-            button1.borderColor = UIColor.black
-            button1.border = 2
-            button1.addTarget(self, action: #selector(button1Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    
-    @IBOutlet weak var button2: MARoundButton!{
-        didSet{
-            button2.corner = 30
-            button2.borderColor = UIColor.black
-            button2.border = 2
-            button2.addTarget(self, action: #selector(button2Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button3: MARoundButton!{
-        didSet{
-            button3.corner = 30
-            button3.borderColor = UIColor.black
-            button3.border = 2
-            button3.addTarget(self, action: #selector(button3Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button4: MARoundButton!{
-        didSet{
-            button4.corner = 30
-            button4.borderColor = UIColor.black
-            button4.border = 2
-            button4.addTarget(self, action: #selector(button4Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button5: MARoundButton!{
-        didSet{
-            button5.corner = 30
-            button5.borderColor = UIColor.black
-            button5.border = 2
-            button5.addTarget(self, action: #selector(button5Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button6: MARoundButton!{
-        didSet{
-            button6.corner = 30
-            button6.borderColor = UIColor.black
-            button6.border = 2
-            button6.addTarget(self, action: #selector(button6Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button7: MARoundButton!{
-        didSet{
-            button7.corner = 30
-            button7.borderColor = UIColor.black
-            button7.border = 2
-            button7.addTarget(self, action: #selector(button7Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button8: MARoundButton!{
-        didSet{
-            button8.corner = 30
-            button8.borderColor = UIColor.black
-            button8.border = 2
-            button8.addTarget(self, action: #selector(button8Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var button9: MARoundButton!{
-        didSet{
-            button9.corner = 30
-            button9.borderColor = UIColor.black
-            button9.border = 2
-            button9.addTarget(self, action: #selector(button9Tapped(_:)), for: .touchUpInside)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewsID()
         showMenu()
         tapGesture()
+        
+        
+        let newLayout = AnimatedCollectionViewLayout()
+        newLayout.animator = LinearCardAttributesAnimator()
+        newLayout.scrollDirection = direction
+        mainCollectionViewCell.collectionViewLayout = newLayout
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    func button1Tapped(_ sender: Any){
-        
-        getCategory(category: "general")
-        self.filteredCategory = []
-
-    }
-    func button2Tapped(_ sender: Any){
-        
-        getCategory(category: "sport")
-        self.filteredCategory = []
-        
-    }
-    func button3Tapped(_ sender: Any){
-        
-        getCategory(category: "music")
-        self.filteredCategory = []
-        
-    }
-    func button4Tapped(_ sender: Any){
-        
-        getCategory(category: "technology")
-        self.filteredCategory = []
-        
-    }
-    func button5Tapped(_ sender: Any){
-        
-        getCategory(category: "business")
-        self.filteredCategory = []
-        
-    }
-    func button6Tapped(_ sender: Any){
-        
-        getCategory(category: "science-and-nature")
-        self.filteredCategory = []
-        
-    }
-    func button7Tapped(_ sender: Any){
-        
-        getCategory(category: "gaming")
-        self.filteredCategory = []
-        
-    }
-    func button8Tapped(_ sender: Any){
-        
-        getCategory(category: "politics")
-        self.filteredCategory = []
-        
-    }
-    func button9Tapped(_ sender: Any){
-        
-        getCategory(category: "entertainment")
-        self.filteredCategory = []
-        
-    }
     
     func getCategory(category: String) {
         
@@ -252,7 +150,6 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
             
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
             
-            
         }
         
     }
@@ -295,3 +192,105 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
     }
     
 }
+
+extension MainVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if indexPath.item == 0 {
+            
+            getCategory(category: "general")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 1{
+            
+            getCategory(category: "sport")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 2{
+            
+            getCategory(category: "music")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 3{
+            
+            getCategory(category: "technology")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 4{
+            
+            getCategory(category: "business")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 5{
+            
+            getCategory(category: "science-and-nature")
+            self.filteredCategory = []
+            
+        }  else if indexPath.item == 6{
+            
+            getCategory(category: "gaming")
+            self.filteredCategory = []
+            
+        } else if indexPath.item == 7{
+            
+            getCategory(category: "politics")
+            self.filteredCategory = []
+            
+        } else {
+            
+            getCategory(category: "entertainment")
+            self.filteredCategory = []
+        }
+        
+    }
+
+}
+
+extension MainVC: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return categoryTitle.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
+        
+        cell.titleLabel.text = categoryTitle[indexPath.item]
+        cell.descriptionLabel.text = categoryDesc[indexPath.item]
+        cell.backgroundColor =  UIColor(red: 217/255, green: 72/255, blue: 89/255, alpha: 1)
+        
+        return cell
+    }
+
+}
+
+extension MainVC: UICollectionViewDelegateFlowLayout {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let animator = animator else { return view.bounds.size }
+        return CGSize(width: view.bounds.width / CGFloat(animator.2), height: view.bounds.height / CGFloat(animator.3))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+}
+
+
+
+
+
+
+
