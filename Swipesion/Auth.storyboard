@@ -145,10 +145,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultProfilePic" translatesAutoresizingMaskIntoConstraints="NO" id="fgR-9K-Atc" customClass="CircleView" customModule="Swipesion" customModuleProvider="target">
-                                <rect key="frame" x="112" y="72" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Siv-I1-r15">
                                 <rect key="frame" x="16" y="230" width="343" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -210,11 +206,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign up"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KL6-6a-eNH">
-                                <rect key="frame" x="42" y="182" width="62" height="40"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uploadPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="FcG-WO-f1j">
+                                <rect key="frame" x="67" y="28" width="240" height="194"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload"/>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -222,10 +217,9 @@
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="Fwp-sC-SHj" id="T2x-to-muJ"/>
                         <outlet property="emailTextField" destination="sd6-12-zD5" id="RN8-V0-bsr"/>
-                        <outlet property="imageView" destination="fgR-9K-Atc" id="eX4-B2-272"/>
+                        <outlet property="imageView" destination="FcG-WO-f1j" id="8RO-pj-ZCh"/>
                         <outlet property="passwordTextField" destination="Aeh-vR-UnV" id="Yt6-sS-pDf"/>
                         <outlet property="signUpButton" destination="DfM-uk-Crx" id="ysY-DR-BxX"/>
-                        <outlet property="uploadButton" destination="KL6-6a-eNH" id="Pxo-LN-eaZ"/>
                         <outlet property="usernameTextField" destination="dXs-QM-A2B" id="DgS-Sb-gw3"/>
                     </connections>
                 </viewController>
@@ -253,6 +247,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="defaultProfilePic" width="300" height="300"/>
+        <image name="uploadPlaceholder" width="16" height="16"/>
     </resources>
 </document>

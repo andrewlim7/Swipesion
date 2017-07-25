@@ -54,11 +54,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             signUpButton.addTarget(self, action: #selector(didTapSignUpButton(_:)), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var uploadButton: UIButton!{
-        didSet{
-            uploadButton.addTarget(self, action: #selector(didTapUploadButton(_:)), for: .touchUpInside)
-        }
-    }
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     var isImageSelected : Bool = false
@@ -83,40 +78,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-    }
-    
-    func didTapUploadButton(_ sender : Any){
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        
-        let alertController = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-        
-        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                pickerController.sourceType = .camera
-                self.present(pickerController, animated: true, completion: nil)
-            } else {
-                let alertVC = UIAlertController(title: "No Camera",message: "Sorry, this device has no camera",preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK",style:.default,handler: nil)
-                alertVC.addAction(okAction)
-                self.present(alertVC, animated: true,completion: nil)
-                return
-            }
-        }
-        
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (action) in
-            pickerController.sourceType = .photoLibrary
-            self.present(pickerController, animated: true, completion: nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(camera)
-        alertController.addAction(photoLibrary)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
         
     }
     
