@@ -113,14 +113,17 @@ class UserVC: UIViewController {
                 
                 defer{
                     self.dismiss(animated: true, completion: nil) //so the return function will return this
+                    self.updateButton.isEnabled = true
                 }
                 
                 if let foundError = error {
                     print(foundError.localizedDescription)
+                    self.updateButton.isEnabled = true
                     return
                 }
                 
                 guard let imageURL = newMeta?.downloadURLs?.first?.absoluteString else {
+                    self.updateButton.isEnabled = true
                     return
                 }
                 
@@ -128,6 +131,10 @@ class UserVC: UIViewController {
                 
                 let ref = Database.database().reference().child("users")
                 ref.child(uid).updateChildValues(param)
+
+                let url = URL(string:  imageURL)
+                UserDefaults.standard.set(url, forKey: "currentUserProfileImage")
+                UserDefaults.standard.synchronize()
             }
             self.myActivityIndicator.stopAnimating()
         }
@@ -140,6 +147,7 @@ class UserVC: UIViewController {
     
     func didTappedUpdateButton(_ sender: Any){
         myActivityIndicator.startAnimating()
+        self.updateButton.isEnabled = false
         
         if isImageSelected == true {
             updateUserProfileImage()

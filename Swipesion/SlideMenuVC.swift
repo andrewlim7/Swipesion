@@ -11,7 +11,8 @@ import FirebaseDatabase
 import FirebaseAuth
 
 
-class SlideMenuVC: UIViewController {
+
+class SlideMenuVC: UIViewController, SettingVCDelegate {
     
     @IBOutlet weak var savedNewsButton: UIButton!{
         didSet{
@@ -77,10 +78,15 @@ class SlideMenuVC: UIViewController {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let settingsVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+        settingsVC.delegate = self
         
-        settingsVC.getUserName = usernameLabel.text
-        settingsVC.getProfileImage = imageView.image
+//        settingsVC.getUserName = usernameLabel.text
+//        settingsVC.getProfileImage = imageView.image
         
         self.present(settingsVC, animated: true, completion: nil)
+    }
+    
+    func passData() {
+        dismiss(animated: true, completion: nil)
     }
 }

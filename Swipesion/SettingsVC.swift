@@ -11,6 +11,10 @@ import FirebaseAuth
 import FirebaseDatabase
 import FBSDKLoginKit
 
+protocol SettingVCDelegate {
+    func passData()
+}
+
 
 class SettingsVC: UIViewController {
 
@@ -39,13 +43,35 @@ class SettingsVC: UIViewController {
     
     var getProfileImage : UIImage?
     var getUserName : String?
+    var delegate: SettingVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        
+//        imageView.image = getProfileImage
+//        usernameLabel.text = getUserName
+//        
         
-        imageView.image = getProfileImage
-        usernameLabel.text = getUserName
+//        if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
+//            editProfileButton.isHidden = true
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
+        
+        if let profileImage = UserDefaults.standard.url(forKey: "currentUserProfileImage") {
+            imageView.sd_setImage(with: profileImage)
+        }
+        
+        if let fbProfileID = UserDefaults.standard.string(forKey: "currentUserFacebookID") {
+            
+            if let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fbProfileID)/picture?type=large&return_ssl_resources=1") {
+                self.imageView.sd_setImage(with: fbProfileURL as URL)
+            }
+        }
         
         if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
             editProfileButton.isHidden = true
@@ -54,7 +80,7 @@ class SettingsVC: UIViewController {
     
     func didTappedCloseButton() {
     
-        dismiss(animated: true, completion: nil)
+        delegate?.passData()
 
     }
     
