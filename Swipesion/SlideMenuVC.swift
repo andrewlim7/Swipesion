@@ -35,6 +35,23 @@ class SlideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
+//        
+//        if let profileImage = UserDefaults.standard.url(forKey: "currentUserProfileImage") {
+//            imageView.sd_setImage(with: profileImage)
+//        }
+//        
+//        if let fbProfileID = UserDefaults.standard.string(forKey: "currentUserFacebookID") {
+//            
+//            if let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fbProfileID)/picture?type=large&return_ssl_resources=1") {
+//                self.imageView.sd_setImage(with: fbProfileURL as URL)
+//            }
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
         
         if let profileImage = UserDefaults.standard.url(forKey: "currentUserProfileImage") {
@@ -47,12 +64,6 @@ class SlideMenuVC: UIViewController {
                 self.imageView.sd_setImage(with: fbProfileURL as URL)
             }
         }
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     func didTappedSavedNewsButton(_ sender : Any){
@@ -60,7 +71,6 @@ class SlideMenuVC: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as? SavedNewsVC
         // let navController = UINavigationController()
         self.navigationController?.pushViewController(vc!, animated: true)
-        
     }
     
     func didTappedSettingsButton(_ sender: Any) {
@@ -72,7 +82,5 @@ class SlideMenuVC: UIViewController {
         settingsVC.getProfileImage = imageView.image
         
         self.present(settingsVC, animated: true, completion: nil)
-        
-        
     }
 }

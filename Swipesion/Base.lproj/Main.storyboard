@@ -190,7 +190,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJZ-YW-cbr">
                                 <rect key="frame" x="20" y="274" width="187" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit prolife"/>
+                                <state key="normal" title="Edit profile"/>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fww-bA-Obp">
                                 <rect key="frame" x="0.0" y="64" width="414" height="194"/>
@@ -216,6 +216,7 @@
                     <navigationItem key="navigationItem" id="nAJ-4Y-vx2"/>
                     <connections>
                         <outlet property="closeButton" destination="w2M-RO-OLu" id="GXb-uI-Mcq"/>
+                        <outlet property="editProfileButton" destination="RJZ-YW-cbr" id="ZQK-MK-1Gh"/>
                         <outlet property="imageView" destination="oiK-Hn-eUY" id="wjf-kF-J9F"/>
                         <outlet property="signOutButton" destination="uMh-yc-C9s" id="3Qe-BZ-5Zb"/>
                         <outlet property="usernameLabel" destination="L5x-dZ-3GG" id="cKi-vF-Bwp"/>
@@ -243,7 +244,7 @@
                                 <state key="normal" title="Update"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRj-qV-9e6">
-                                <rect key="frame" x="278" y="63" width="116" height="39"/>
+                                <rect key="frame" x="149" y="402" width="116" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload Image"/>
                             </button>
@@ -251,10 +252,30 @@
                                 <rect key="frame" x="132" y="244" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ii9-1Y-LiH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="cwd-gq-HkY"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Edit Profile" id="qnr-Bz-OOP">
+                                        <barButtonItem key="leftBarButtonItem" title="X" id="UtV-mL-hHb"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ii9-1Y-LiH" firstAttribute="top" secondItem="RxG-XK-Z6L" secondAttribute="top" id="Dnz-f0-QMR"/>
+                            <constraint firstItem="Ii9-1Y-LiH" firstAttribute="leading" secondItem="RxG-XK-Z6L" secondAttribute="leading" id="TDJ-wG-lwe"/>
+                            <constraint firstItem="Ii9-1Y-LiH" firstAttribute="top" secondItem="RxG-XK-Z6L" secondAttribute="top" id="UvE-0v-rKi"/>
+                            <constraint firstAttribute="trailing" secondItem="Ii9-1Y-LiH" secondAttribute="trailing" id="cYI-oW-hlh"/>
+                            <constraint firstItem="Ii9-1Y-LiH" firstAttribute="leading" secondItem="RxG-XK-Z6L" secondAttribute="leading" id="fi4-Hx-2ML"/>
+                            <constraint firstAttribute="trailing" secondItem="Ii9-1Y-LiH" secondAttribute="trailing" id="nSF-4E-Sqa"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="UtV-mL-hHb" id="dME-Yp-83j"/>
                         <outlet property="changeProfileImage" destination="8H8-Tk-89v" id="14W-Tv-wcN"/>
                         <outlet property="updateButton" destination="JWU-3G-NDu" id="Sdj-H6-wEy"/>
                         <outlet property="uploadImageButton" destination="gRj-qV-9e6" id="Wif-At-F2r"/>
@@ -262,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1H-gf-cvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="-655"/>
+            <point key="canvasLocation" x="1454" y="-655"/>
         </scene>
         <!--Selected NewsVC-->
         <scene sceneID="N4q-RF-9wa">

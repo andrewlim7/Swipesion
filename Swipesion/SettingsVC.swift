@@ -31,6 +31,12 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var imageView: CircleView!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var editProfileButton: UIButton!{
+        didSet{
+            editProfileButton.addTarget(self, action: #selector(SettingsVC.didTappedEditButton), for: .touchUpInside)
+        }
+    }
+    
     var getProfileImage : UIImage?
     var getUserName : String?
     
@@ -39,12 +45,26 @@ class SettingsVC: UIViewController {
         
         imageView.image = getProfileImage
         usernameLabel.text = getUserName
+        
+        
+        if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
+            editProfileButton.isHidden = true
+        }
     }
     
     func didTappedCloseButton() {
     
         dismiss(animated: true, completion: nil)
 
+    }
+    
+    func didTappedEditButton(){
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let userVC = mainStoryboard.instantiateViewController(withIdentifier: "UserVC") as! UserVC
+        
+        userVC.displayUserImage = imageView.image
+        
+        self.present(userVC, animated: true, completion: nil)
     }
     
     func didTapSignOutButton(_ sender: Any){
