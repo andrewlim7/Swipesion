@@ -17,5 +17,8 @@ target 'Swipesion' do
   pod 'SDWebImage'
   pod 'MARoundButton'
   pod 'Koloda', '~> 4.0'
+  pod 'paper-onboarding', '~> 2.0.1'
+  pod 'AnimatedCollectionViewLayout'
+
 
 end

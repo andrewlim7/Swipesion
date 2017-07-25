@@ -26,7 +26,6 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
             button1.corner = 30
             button1.borderColor = UIColor.black
             button1.border = 2
-            button1.isEnabled = false
             button1.addTarget(self, action: #selector(button1Tapped(_:)), for: .touchUpInside)
         }
     }
@@ -223,10 +222,7 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
                             
                             self.interest.append(latestNews!)
                         }
-                        
-                        DispatchQueue.main.async {
-                            self.button1.isEnabled = true
-                        }
+
                         return
                     }
                     catch {
