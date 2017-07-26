@@ -488,18 +488,12 @@
                                         <state key="normal" image="thumbDown">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="leftButtonTapped" destination="V5o-PH-Czo" eventType="touchUpInside" id="I9I-ea-cLd"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrK-bJ-Mvf">
                                         <rect key="frame" x="292" y="529" width="34" height="34"/>
                                         <state key="normal" image="thumbUp">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="rightButtonTapped" destination="V5o-PH-Czo" eventType="touchUpInside" id="Jw5-TV-OEY"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fI9-aS-N5K">
                                         <rect key="frame" x="190" y="529" width="34" height="34"/>
@@ -572,6 +566,8 @@
                         <outlet property="backButton" destination="TVx-Il-Xv5" id="zxh-1m-dpb"/>
                         <outlet property="categoryTitleLabel" destination="AHt-S5-oe2" id="lcm-BZ-460"/>
                         <outlet property="kolodaView" destination="aAy-ut-0bi" id="R4W-nu-oKg"/>
+                        <outlet property="leftButton" destination="SGb-5V-fr0" id="Jev-FX-5JS"/>
+                        <outlet property="rightButton" destination="rrK-bJ-Mvf" id="kuM-l4-J2i"/>
                         <outlet property="saveLinkButton" destination="fI9-aS-N5K" id="Dx8-Or-lII"/>
                     </connections>
                 </viewController>

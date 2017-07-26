@@ -32,11 +32,24 @@ class SelectedCategoryVC: UIViewController {
             saveLinkButton.isHidden = true
         }
     }
+    @IBOutlet weak var rightButton: UIButton!{
+        didSet{
+            rightButton.addTarget(self, action: #selector(rightButtonTapped(_:)), for: .touchUpInside)
+            rightButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var leftButton: UIButton!{
+        didSet{
+            leftButton.addTarget(self, action: #selector(leftButtonTapped(_:)), for: .touchUpInside)
+            leftButton.isHidden = true
+        }
+    }
     
     let frameAnimationSpringBounciness: CGFloat = 9
     let frameAnimationSpringSpeed: CGFloat = 16
     let kolodaCountOfVisibleCards = 2
     let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
+    let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
@@ -63,18 +76,19 @@ class SelectedCategoryVC: UIViewController {
         }
         
         newsOnCategory()
+        setupSpinner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.isNavigationBarHidden = true
     }
-    
-    @IBAction func leftButtonTapped() {
+
+    func leftButtonTapped(_ sender: Any){
         kolodaView?.swipe(.left)
     }
     
-    @IBAction func rightButtonTapped() {
+    func rightButtonTapped(_ sender: Any){
         kolodaView?.swipe(.right)
     }
     
@@ -106,7 +120,7 @@ class SelectedCategoryVC: UIViewController {
     }
     
     func getNews(from source: String, sorted cate: String) {
-        
+        myActivityIndicator.startAnimating()
         session = URLSession(configuration: .default)
         
         let url = URL(string: "https://newsapi.org/v1/articles?source=\(source)&category=\(cate)&apiKey=22f2516b0fc845818b266905e56cf205")
@@ -172,6 +186,12 @@ class SelectedCategoryVC: UIViewController {
             
             }.resume()
     }
+    
+    func setupSpinner(){
+        myActivityIndicator.center = view.center
+        myActivityIndicator.hidesWhenStopped = true
+        view.addSubview(myActivityIndicator)
+    }
 }
 
 extension SelectedCategoryVC: KolodaViewDelegate {
@@ -194,7 +214,15 @@ extension SelectedCategoryVC: KolodaViewDelegate {
         
     }
     
+    func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {
+        self.myActivityIndicator.stopAnimating()
+    }
+    
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
+        self.myActivityIndicator.stopAnimating()
+        saveLinkButton.isHidden = false
+        leftButton.isHidden = false
+        rightButton.isHidden = false
         return true
     }
     
@@ -212,7 +240,7 @@ extension SelectedCategoryVC: KolodaViewDelegate {
         animation?.springSpeed = frameAnimationSpringSpeed
         return animation
     }
-    
+
 }
 
 extension SelectedCategoryVC: KolodaViewDataSource {
