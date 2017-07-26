@@ -30,6 +30,11 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
                                  "Gummies pudding cupcake gingerbread bear claw marzipan.",
                                  "Gummies pudding cupcake gingerbread bear claw marzipan."]
     
+    
+    var randomColor = [UIColor(red: 168/255, green: 200/255, blue: 78/255, alpha: 1),
+                       UIColor(red: 106/255, green: 166/255, blue: 211/255, alpha: 1),
+                       UIColor(red: 217/255, green: 72/255, blue: 89/255, alpha: 1)]
+    
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var mainCollectionViewCell: UICollectionView! {
         
@@ -141,8 +146,6 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
             
             }.resume()
     }
-    
-    
     
     func showMenu() {
         
@@ -264,7 +267,9 @@ extension MainVC: UICollectionViewDataSource {
         
         cell.titleLabel.text = categoryTitle[indexPath.item]
         cell.descriptionLabel.text = categoryDesc[indexPath.item]
-        cell.backgroundColor =  UIColor(red: 217/255, green: 72/255, blue: 89/255, alpha: 1)
+
+
+        cell.backgroundColor = self.randomColor[indexPath.item % self.randomColor.count]
         
         return cell
     }
