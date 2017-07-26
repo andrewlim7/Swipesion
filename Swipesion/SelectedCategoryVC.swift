@@ -16,9 +16,7 @@ import FirebaseDatabase
 class SelectedCategoryVC: UIViewController {
 
     var news : [News] = []
-    
     var getNewsID: [News] = []
-    
     var session: URLSession = URLSession(configuration: .default)
     
     @IBOutlet weak var categoryTitleLabel: UILabel!
@@ -137,8 +135,9 @@ class SelectedCategoryVC: UIViewController {
                         guard let getArticles = json?["articles"] as? [[String:Any]] else { return }
                         
                         for retrievedObject in getArticles {
-                            guard let latestNews = News(dictionary: retrievedObject) else { return }
-                            self.news.append(latestNews)
+                            if let latestNews = News(dictionary: retrievedObject) {
+                                self.news.append(latestNews)
+                            }
                         }
                         
                         DispatchQueue.main.async {
@@ -266,14 +265,15 @@ extension SelectedCategoryVC: KolodaViewDataSource {
                 else { return }
             
             let sendNews = self.news[index]
-            
+            let now = Date()
             let param : [String: Any] = ["userID": uid,
                                          "title": sendNews.title ?? "",
                                          "description": sendNews.description ?? "",
                                          "author": sendNews.author ?? "",
                                          "url": sendNews.url ?? "",
                                          "urlToImage": sendNews.urlToImage ?? "",
-                                         "publishAt":sendNews.publishedAt ?? ""]
+                                         "publishAt":sendNews.publishedAt ?? "",
+                                         "timestamp": now.timeIntervalSince1970]
             
             let getRef = databaseRef.child("savedLinks").childByAutoId()
             getRef.setValue(param)
