@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="width" constant="343" id="AlD-rE-iHF"/>
                                     <constraint firstAttribute="height" constant="115" id="DcO-uI-8OZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="35"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx5-9n-cBZ">
