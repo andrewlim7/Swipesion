@@ -13,7 +13,8 @@ class SavedNewsCell: UITableViewCell {
     @IBOutlet weak var cellImageView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var sourcesLabel: UILabel!
+
 
     override func awakeFromNib() {
         super.awakeFromNib()

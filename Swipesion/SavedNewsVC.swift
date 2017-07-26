@@ -78,7 +78,7 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
     func getSavedLinks(_ linkID : String){
         
         ref.child("savedLinks").child(linkID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let data = News(snapshot: snapshot){
+            if let data = News(snapshot: snapshot) {
                 
                 self.storeSavedLinks.append(data)
                 self.storeSavedLinks.sort(by: {$0.timestamp > $1.timestamp})
@@ -124,7 +124,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
         let currentRow = filteredLinks[indexPath.row]
         
         cell.titleLabel.text = currentRow.title
-        cell.dateLabel.text = currentRow.publishedAt
+        cell.sourcesLabel.text = currentRow.sourceName
         
         cell.cellImageView.sd_setShowActivityIndicatorView(true)
         cell.cellImageView.sd_setIndicatorStyle(.whiteLarge)
