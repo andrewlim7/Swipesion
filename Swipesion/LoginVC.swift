@@ -15,14 +15,17 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
-            emailTextField.placeholder = "Insert email address"
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
+
             emailTextField.delegate = self
         }
     }
     
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
-            passwordTextField.placeholder = "Insert password"
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                          attributes: [NSForegroundColorAttributeName: UIColor.black])
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
             passwordTextField.returnKeyType = .done
@@ -32,12 +35,21 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     @IBOutlet weak var loginButton: UIButton!{
         didSet{
             loginButton.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
+            loginButton.layer.borderWidth = 1
+            loginButton.layer.borderColor = UIColor.black.cgColor
+            loginButton.layer.cornerRadius = 6
+            
+            
         }
     }
     
     @IBOutlet weak var signUpButton: UIButton!{
         didSet{
             signUpButton.addTarget(self, action: #selector(didTapRegisterButton(_:)), for: .touchUpInside)
+            signUpButton.layer.borderWidth = 1
+            signUpButton.layer.borderColor = UIColor.black.cgColor
+            signUpButton.layer.cornerRadius = 8
+            
         }
     }
     
@@ -54,6 +66,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         setupSpinner()
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+        self.view.backgroundColor = UIColor(red: 106/255, green: 166/255, blue: 211/255, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {

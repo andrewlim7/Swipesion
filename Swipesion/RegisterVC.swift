@@ -18,7 +18,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!{
         didSet{
-            usernameTextField.placeholder = "Insert name"
+            usernameTextField.attributedPlaceholder = NSAttributedString(string: "Insert your name",
+                                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
             usernameTextField.delegate = self
             
         }
@@ -26,14 +27,16 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
-            emailTextField.placeholder = "Insert email address"
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Insert your email",
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
             emailTextField.delegate = self
         }
     }
     
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
-            passwordTextField.placeholder = "Insert password"
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Insert your password",
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
         }
@@ -42,7 +45,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var confirmPasswordTextField: UITextField!{
         didSet{
-            confirmPasswordTextField.placeholder = "Insert confirm password"
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Insert your confirm password",
+                                                                                attributes: [NSForegroundColorAttributeName: UIColor.black])
             confirmPasswordTextField.isSecureTextEntry = true
             confirmPasswordTextField.delegate = self
         }
@@ -52,6 +56,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!{
         didSet{
             signUpButton.addTarget(self, action: #selector(didTapSignUpButton(_:)), for: .touchUpInside)
+            signUpButton.layer.borderWidth = 1
+            signUpButton.layer.borderColor = UIColor.black.cgColor
+            signUpButton.layer.cornerRadius = 8
         }
     }
     
@@ -73,6 +80,20 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.view.backgroundColor = UIColor(red: 168/255, green: 200/255, blue: 78/255, alpha: 1)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         
     }
     

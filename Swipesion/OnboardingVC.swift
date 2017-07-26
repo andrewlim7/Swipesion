@@ -25,6 +25,10 @@ class OnboardingVC: UIViewController {
         didSet {
             
             startedBtn.addTarget(self, action: #selector(startedBtnTapped(_:)), for: .touchUpInside)
+            startedBtn.setTitle("Start", for: .normal)
+            startedBtn.layer.borderWidth = 1
+            startedBtn.layer.borderColor = UIColor.white.cgColor
+            startedBtn.layer.cornerRadius = 5
         }
     }
     
@@ -66,11 +70,11 @@ extension OnboardingVC: PaperOnboardingDataSource {
         let titleFont = UIFont(name: "AvenirNext-Bold", size: 24)!
         let descriptionFont = UIFont(name: "AvenirNext-Regular", size: 18)!
         
-        return[("rocket","A great rocket start!", "Ice cream gummi bears marshmallow oat cake marshmallow pastry. Liquorice fruitcake jujubes cupcake. Carrot cake brownie toffee.", "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
+        return[("Newspaper-icon", "Just Swipe", "A great news start with a swipe, change the way we read news, say goodbye to flip just swipe.", "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
                
-               ("brush","A great brush morning start!", "Ice cream gummi bears marshmallow oat cake marshmallow pastry. Liquorice fruitcake jujubes cupcake. Carrot cake brownie toffee.", "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
+               ("done rm5", "Left. Right. Down.", "Swipe left to skip. Swipe right to read now. Swipe down to read later.", "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
                
-               ("notification","Stay up to date!", "Ice cream gummi bears marshmallow oat cake marshmallow pastry. Liquorice fruitcake jujubes cupcake. Carrot cake brownie toffee.", "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
+               ("notification","Stay up to date!", "We won't let you miss the latest and hottest news! Press 'Start' to login.", "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
     }
     
     func onboardingItemsCount() -> Int {
