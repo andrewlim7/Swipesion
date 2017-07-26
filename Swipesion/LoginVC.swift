@@ -14,21 +14,60 @@ import FBSDKLoginKit
 class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!{
+        
         didSet{
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
+            
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes:[NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
 
             emailTextField.delegate = self
+            
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.frame = CGRect(x: 0, y: emailTextField.frame.size.height - width, width:  emailTextField.frame.size.width + 25, height: emailTextField.frame.size.height)
+            
+            let logoImage = UIImageView(image: UIImage(named: "email"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        
+            border.borderWidth = width
+            emailTextField.layer.addSublayer(border)
+            emailTextField.layer.masksToBounds = true
+            emailTextField.leftView = logoImage
+            emailTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            emailTextField.leftViewMode = .always
+            emailTextField.textAlignment = .center
+            emailTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
         }
     }
     
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                          attributes: [NSForegroundColorAttributeName: UIColor.black])
+                                                                          attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
             passwordTextField.returnKeyType = .done
+            
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.borderWidth = width
+            
+            border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width + 25, height: passwordTextField.frame.size.height)
+            
+            
+            let logoImage = UIImageView(image: UIImage(named: "unlock"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
+            passwordTextField.layer.addSublayer(border)
+            passwordTextField.layer.masksToBounds = true
+            passwordTextField.leftView = logoImage
+            passwordTextField.leftView?.frame = CGRect(x: 20, y: 20, width: 25, height: 25)
+            passwordTextField.leftViewMode = .always
+            passwordTextField.textAlignment = .center
+            passwordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+
         }
     }
     
@@ -36,9 +75,9 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         didSet{
             loginButton.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
             loginButton.layer.borderWidth = 1
-            loginButton.layer.borderColor = UIColor.black.cgColor
+            loginButton.layer.borderColor = UIColor.clear.cgColor
             loginButton.layer.cornerRadius = 6
-            
+            loginButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
         }
     }
@@ -46,9 +85,9 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
     @IBOutlet weak var signUpButton: UIButton!{
         didSet{
             signUpButton.addTarget(self, action: #selector(didTapRegisterButton(_:)), for: .touchUpInside)
-            signUpButton.layer.borderWidth = 1
-            signUpButton.layer.borderColor = UIColor.black.cgColor
-            signUpButton.layer.cornerRadius = 8
+//            signUpButton.layer.borderWidth = 1
+//            signUpButton.layer.borderColor = UIColor.black.cgColor
+//            signUpButton.layer.cornerRadius = 8
             
         }
     }
@@ -59,6 +98,15 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         }
     }
     
+    
+    @IBOutlet weak var logoImageView: UIImageView! {
+        
+        didSet {
+            
+//            logoImageView.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        }
+    }
+    
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     override func viewDidLoad() {
@@ -66,7 +114,8 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         setupSpinner()
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
-        self.view.backgroundColor = UIColor(red: 106/255, green: 166/255, blue: 211/255, alpha: 1)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,5 +274,7 @@ class LoginVC: UIViewController,UITextFieldDelegate, FBSDKLoginButtonDelegate {
         alertController.addAction(ok)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+
     
 }

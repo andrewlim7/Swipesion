@@ -18,37 +18,103 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!{
         didSet{
-            usernameTextField.attributedPlaceholder = NSAttributedString(string: "Insert your name",
-                                                                         attributes: [NSForegroundColorAttributeName: UIColor.black])
+            usernameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
+                                                                         attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
             usernameTextField.delegate = self
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.frame = CGRect(x: 0, y: usernameTextField.frame.size.height - width, width:  usernameTextField.frame.size.width + 18, height: usernameTextField.frame.size.height)
+            
+            let logoImage = UIImageView(image: UIImage(named: "user"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
+            border.borderWidth = width
+            usernameTextField.layer.addSublayer(border)
+            usernameTextField.layer.masksToBounds = true
+            usernameTextField.leftView = logoImage
+            usernameTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            usernameTextField.leftViewMode = .always
+            usernameTextField.textAlignment = .center
+            usernameTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
         }
     }
     
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Insert your email",
-                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
             emailTextField.delegate = self
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.frame = CGRect(x: 0, y: emailTextField.frame.size.height - width, width:  emailTextField.frame.size.width + 18, height: emailTextField.frame.size.height)
+            
+            let logoImage = UIImageView(image: UIImage(named: "email"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
+            border.borderWidth = width
+            emailTextField.layer.addSublayer(border)
+            emailTextField.layer.masksToBounds = true
+            emailTextField.leftView = logoImage
+            emailTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            emailTextField.leftViewMode = .always
+            emailTextField.textAlignment = .center
+            emailTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
         }
     }
     
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Insert your password",
-                                                                      attributes: [NSForegroundColorAttributeName: UIColor.black])
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
+            
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width + 18, height: passwordTextField.frame.size.height)
+            
+            let logoImage = UIImageView(image: UIImage(named: "lock"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            border.borderWidth = width
+            passwordTextField.layer.addSublayer(border)
+            passwordTextField.layer.masksToBounds = true
+            passwordTextField.leftView = logoImage
+            passwordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            passwordTextField.leftViewMode = .always
+            passwordTextField.textAlignment = .center
+            passwordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     
     
     @IBOutlet weak var confirmPasswordTextField: UITextField!{
         didSet{
-            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Insert your confirm password",
-                                                                                attributes: [NSForegroundColorAttributeName: UIColor.black])
+            confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Confirm password",
+                                                                                attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
             confirmPasswordTextField.isSecureTextEntry = true
             confirmPasswordTextField.delegate = self
+            
+            let border = CALayer()
+            let width = CGFloat(1.0)
+            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.frame = CGRect(x: 0, y: confirmPasswordTextField.frame.size.height - width, width:  confirmPasswordTextField.frame.size.width + 18, height: confirmPasswordTextField.frame.size.height)
+            
+            let logoImage = UIImageView(image: UIImage(named: "lock"))
+            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            
+            border.borderWidth = width
+            confirmPasswordTextField.layer.addSublayer(border)
+            confirmPasswordTextField.layer.masksToBounds = true
+            confirmPasswordTextField.leftView = logoImage
+            confirmPasswordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            confirmPasswordTextField.leftViewMode = .always
+            confirmPasswordTextField.textAlignment = .center
+            confirmPasswordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     
@@ -57,8 +123,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         didSet{
             signUpButton.addTarget(self, action: #selector(didTapSignUpButton(_:)), for: .touchUpInside)
             signUpButton.layer.borderWidth = 1
-            signUpButton.layer.borderColor = UIColor.black.cgColor
-            signUpButton.layer.cornerRadius = 8
+            signUpButton.layer.borderColor = UIColor.clear.cgColor
+            signUpButton.layer.cornerRadius = 6
+            signUpButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     
