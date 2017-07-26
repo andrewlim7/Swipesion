@@ -14,7 +14,8 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SelectedCategoryVC: UIViewController {
-
+    
+    var firstLoad = true
     var news : [News] = []
     var getNewsID: [News] = []
     var session: URLSession = URLSession(configuration: .default)
@@ -28,6 +29,7 @@ class SelectedCategoryVC: UIViewController {
     @IBOutlet weak var saveLinkButton: UIButton!{
         didSet{
             saveLinkButton.addTarget(self, action: #selector(saveLinkButtonTapped(_:)), for: .touchUpInside)
+            saveLinkButton.isHidden = true
         }
     }
     
@@ -49,9 +51,15 @@ class SelectedCategoryVC: UIViewController {
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
-        for title in getNewsID {
-            
-            categoryTitleLabel.text = title.category?.capitalized
+        //        for title in getNewsID {
+        //
+        //            categoryTitleLabel.text = title.category?.capitalized
+        //        }
+        
+        if getNewsID.count == 0  {
+            categoryTitleLabel.text = "Loading"
+        } else {
+            categoryTitleLabel.text = getNewsID[0].category?.capitalized
         }
         
         newsOnCategory()
@@ -77,7 +85,7 @@ class SelectedCategoryVC: UIViewController {
     func saveLinkButtonTapped(_ sender: Any){
         kolodaView?.swipe(.down)
     }
-
+    
     func backButtonTapped(_ sender: Any){
         
         self.navigationController?.popViewController(animated: true)
@@ -87,16 +95,12 @@ class SelectedCategoryVC: UIViewController {
         
         for getID in getNewsID {
             
-            //if getID.category == "general" {
-            
             if let sourceID = getID.nid {
                 
                 if let filteredCater = getID.category {
                     
                     getNews(from: sourceID, sorted: filteredCater)
                 }
-                
-                //}
             }
         }
     }
@@ -132,17 +136,23 @@ class SelectedCategoryVC: UIViewController {
                         
                         let json: [String:Any]? = try JSONSerialization.jsonObject(with: validData, options: .allowFragments) as? [String:Any]
                         
-                        guard let getArticles = json?["articles"] as? [[String:Any]] else { return }
+                        guard
+                            let getSourceName = json?["source"] as? String,
+                            let getArticles = json?["articles"] as? [[String:Any]] else { return }
                         
                         for retrievedObject in getArticles {
-                            if let latestNews = News(dictionary: retrievedObject) {
+                            if let latestNews = News(dictionary: retrievedObject, source:getSourceName) {
                                 self.news.append(latestNews)
                             }
                         }
                         
-                        DispatchQueue.main.async {
+                        if self.firstLoad { // == true
+                            self.firstLoad = false // set it to false so it wont load 3 times from user interfaces but backend it loaded all the sources.
+                            DispatchQueue.main.async {
+                                self.kolodaView.reloadData()
+                                
+                            }
                             
-                            self.kolodaView.reloadData()
                         }
                         
                         return
@@ -162,8 +172,6 @@ class SelectedCategoryVC: UIViewController {
             
             }.resume()
     }
-    
-    
 }
 
 extension SelectedCategoryVC: KolodaViewDelegate {
@@ -173,7 +181,11 @@ extension SelectedCategoryVC: KolodaViewDelegate {
     }
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        kolodaView.resetCurrentCardIndex()
+        if koloda.currentCardIndex == news.count { //the flow of this logic: if currentCard[30] == total news[30]
+            kolodaView.resetCurrentCardIndex() //reset it back to the news[0]
+        }else { //else
+            koloda.reloadData() //if currentCard[9] == total news[30], means it will load news[10] until news[30] == news[30] then will reset it to news[0]
+        }
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -216,7 +228,6 @@ extension SelectedCategoryVC: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
         let customImageCard = CustomImageView(frame: koloda.frame)
         
         let currentIndex = self.news[index]
@@ -239,7 +250,6 @@ extension SelectedCategoryVC: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
     
@@ -257,7 +267,7 @@ extension SelectedCategoryVC: KolodaViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
             
         } else if direction == SwipeResultDirection.down {
-        
+            
             let databaseRef = Database.database().reference()
             
             guard
@@ -273,11 +283,12 @@ extension SelectedCategoryVC: KolodaViewDataSource {
                                          "url": sendNews.url ?? "",
                                          "urlToImage": sendNews.urlToImage ?? "",
                                          "publishAt":sendNews.publishedAt ?? "",
+                                         "sourceName": sendNews.sourceName ?? "",
                                          "timestamp": now.timeIntervalSince1970]
             
             let getRef = databaseRef.child("savedLinks").childByAutoId()
             getRef.setValue(param)
-
+            
             let currentSID = getRef.key
             
             let updateUserSID = databaseRef.child("users").child(uid).child("links")
@@ -285,5 +296,6 @@ extension SelectedCategoryVC: KolodaViewDataSource {
         }
         
     }
+    
     
 }

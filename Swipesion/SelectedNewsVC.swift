@@ -174,6 +174,7 @@ class SelectedNewsVC: UIViewController {
                                          "url": saveNews.url ?? "",
                                          "urlToImage": saveNews.urlToImage ?? "",
                                          "publishAt":saveNews.publishedAt ?? "",
+                                         "sourceName": saveNews.sourceName ?? "",
                                          "timestamp": now.timeIntervalSince1970]
             
             let getRef = databaseRef.child("savedLinks").childByAutoId()

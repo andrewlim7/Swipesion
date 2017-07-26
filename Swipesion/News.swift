@@ -12,6 +12,7 @@ import FirebaseDatabase
 class News {
 
     var author: String?
+    var sourceName : String?
     var description: String?
     var title: String?
     var url: String?
@@ -22,7 +23,7 @@ class News {
     var linkID : String?
     var timestamp : Date
     
-    init?(dictionary: [String:Any]) {
+    init?(dictionary: [String:Any], source: String? = nil) {
         self.author = dictionary["author"] as? String  ?? "N/A"
         self.description = dictionary["description"] as? String ?? "N/A"
         self.title = dictionary["title"] as? String ?? "N/A"
@@ -31,13 +32,14 @@ class News {
         self.publishedAt = dictionary["publishAt"] as? String ?? "N/A"
         self.nid = dictionary["id"] as? String ?? "N/A"
         self.category = dictionary["category"] as?  String ?? "N/A"
+        self.sourceName = source ?? dictionary["sourceName"] as? String ?? "N/A"
         self.timestamp = Date()
     }
 }
 
 extension News {
     
-    convenience init?(snapshot: DataSnapshot){
+    convenience init?(snapshot: DataSnapshot) {
         guard
             let dictionary = snapshot.value as? [String: Any]
         else { return nil }
