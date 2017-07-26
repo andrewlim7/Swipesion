@@ -40,7 +40,7 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewsID()
@@ -111,16 +111,20 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
                         
                         guard let getCategory = json?["sources"] as? [[String:Any]] else { return }
                         
+                        
+                        
                         for retrievedObject in getCategory {
                             
-                            let latestNews = News(dictionary: retrievedObject)
-                            
-                            latestNews?.nid = retrievedObject["id"] as? String
-                            latestNews?.category = retrievedObject["category"] as? String
-                            
-                            self.interest.append(latestNews!)
+                            if let latestNews = News(dictionary: retrievedObject) {
+                                
+                                latestNews.nid = retrievedObject["id"] as? String
+                                latestNews.sourceName = retrievedObject["name"] as? String
+                                latestNews.category = retrievedObject["category"] as? String
+                                
+                                self.interest.append(latestNews)
+                            }
                         }
-
+                        
                         return
                     }
                     catch {
@@ -137,7 +141,7 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
             
             }.resume()
     }
-
+    
     
     
     func showMenu() {
@@ -182,13 +186,13 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
     }
     
     func tapGesture() {
-    
+        
         if self.revealViewController() != nil {
             
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
-    
+        
     }
     
 }
@@ -196,7 +200,7 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
 extension MainVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         if indexPath.item == 0 {
             
             getCategory(category: "general")
@@ -244,7 +248,7 @@ extension MainVC: UICollectionViewDelegate {
         }
         
     }
-
+    
 }
 
 extension MainVC: UICollectionViewDataSource {
@@ -264,7 +268,7 @@ extension MainVC: UICollectionViewDataSource {
         
         return cell
     }
-
+    
 }
 
 extension MainVC: UICollectionViewDelegateFlowLayout {
