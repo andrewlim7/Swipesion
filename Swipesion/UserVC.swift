@@ -148,6 +148,7 @@ class UserVC: UIViewController {
     func didTappedUpdateButton(_ sender: Any){
         myActivityIndicator.startAnimating()
         self.updateButton.isEnabled = false
+        self.cancelButton.isEnabled = false
         
         if isImageSelected == true {
             updateUserProfileImage()
