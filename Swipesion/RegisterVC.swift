@@ -26,15 +26,15 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: usernameTextField.frame.size.height - width, width:  usernameTextField.frame.size.width + 18, height: usernameTextField.frame.size.height)
             
-            let logoImage = UIImageView(image: UIImage(named: "user"))
-            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+//            let logoImage = UIImageView(image: UIImage(named: "user"))
+//            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
             border.borderWidth = width
             usernameTextField.layer.addSublayer(border)
             usernameTextField.layer.masksToBounds = true
-            usernameTextField.leftView = logoImage
-            usernameTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            usernameTextField.leftViewMode = .always
+//            usernameTextField.leftView = logoImage
+//            usernameTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//            usernameTextField.leftViewMode = .always
             usernameTextField.textAlignment = .center
             usernameTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
@@ -51,15 +51,15 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: emailTextField.frame.size.height - width, width:  emailTextField.frame.size.width + 18, height: emailTextField.frame.size.height)
             
-            let logoImage = UIImageView(image: UIImage(named: "email"))
-            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+//            let logoImage = UIImageView(image: UIImage(named: "email"))
+//            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
             border.borderWidth = width
             emailTextField.layer.addSublayer(border)
             emailTextField.layer.masksToBounds = true
-            emailTextField.leftView = logoImage
-            emailTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            emailTextField.leftViewMode = .always
+//            emailTextField.leftView = logoImage
+//            emailTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//            emailTextField.leftViewMode = .always
             emailTextField.textAlignment = .center
             emailTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
@@ -78,14 +78,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width + 18, height: passwordTextField.frame.size.height)
             
-            let logoImage = UIImageView(image: UIImage(named: "lock"))
-            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+//            let logoImage = UIImageView(image: UIImage(named: "lock"))
+//            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             border.borderWidth = width
             passwordTextField.layer.addSublayer(border)
             passwordTextField.layer.masksToBounds = true
-            passwordTextField.leftView = logoImage
-            passwordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            passwordTextField.leftViewMode = .always
+//            passwordTextField.leftView = logoImage
+//            passwordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//            passwordTextField.leftViewMode = .always
             passwordTextField.textAlignment = .center
             passwordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
@@ -104,15 +104,15 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: confirmPasswordTextField.frame.size.height - width, width:  confirmPasswordTextField.frame.size.width + 18, height: confirmPasswordTextField.frame.size.height)
             
-            let logoImage = UIImageView(image: UIImage(named: "lock"))
-            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+//            let logoImage = UIImageView(image: UIImage(named: "lock"))
+//            logoImage.tintColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             
             border.borderWidth = width
             confirmPasswordTextField.layer.addSublayer(border)
             confirmPasswordTextField.layer.masksToBounds = true
-            confirmPasswordTextField.leftView = logoImage
-            confirmPasswordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            confirmPasswordTextField.leftViewMode = .always
+//            confirmPasswordTextField.leftView = logoImage
+//            confirmPasswordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//            confirmPasswordTextField.leftViewMode = .always
             confirmPasswordTextField.textAlignment = .center
             confirmPasswordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
