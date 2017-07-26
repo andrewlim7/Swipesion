@@ -53,6 +53,7 @@ class SelectedNewsVC: UIViewController {
     }
     
     var getNews : News?
+    var getIsNewsSaved : Bool?
     
     let currentUserID = Auth.auth().currentUser?.uid
     
@@ -71,6 +72,11 @@ class SelectedNewsVC: UIViewController {
             imageView.sd_setImage(with: displayURL)
         }
         
+        if getIsNewsSaved == true{
+            saveLinkButton.isHidden = true
+        }
+        
+        saveLinkButton.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,7 +157,7 @@ class SelectedNewsVC: UIViewController {
     }
     
     func saveLinkButtonTapped(_ sender: Any){
-        
+        saveLinkButton.isEnabled = false
         if currentUserID != nil {
             let databaseRef = Database.database().reference()
             
@@ -160,13 +166,15 @@ class SelectedNewsVC: UIViewController {
                 let saveNews = getNews
                 else { return }
             
+            let now = Date()
             let param : [String: Any] = ["userID": uid,
                                          "title": saveNews.title ?? "",
                                          "description": saveNews.description ?? "",
                                          "author": saveNews.author ?? "",
                                          "url": saveNews.url ?? "",
                                          "urlToImage": saveNews.urlToImage ?? "",
-                                         "publishAt":saveNews.publishedAt ?? ""]
+                                         "publishAt":saveNews.publishedAt ?? "",
+                                         "timestamp": now.timeIntervalSince1970]
             
             let getRef = databaseRef.child("savedLinks").childByAutoId()
             getRef.setValue(param)
@@ -175,8 +183,13 @@ class SelectedNewsVC: UIViewController {
             
             let updateUserSID = databaseRef.child("users").child(uid).child("links")
             updateUserSID.updateChildValues([currentSID:true])
+            
+            let alertController = UIAlertController(title: "Saved!", message: "Please check it in your saved links.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(ok)
+            
+            present(alertController, animated: true, completion: nil)
         }
-        
     }
     
     func urlBtnTapped(_ sender: Any) {

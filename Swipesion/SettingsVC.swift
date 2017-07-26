@@ -47,14 +47,7 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        imageView.image = getProfileImage
-//        usernameLabel.text = getUserName
-//        
-        
-//        if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
-//            editProfileButton.isHidden = true
-//        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

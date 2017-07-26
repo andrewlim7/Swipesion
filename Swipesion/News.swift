@@ -20,6 +20,7 @@ class News {
     var nid: String?
     var category: String?
     var linkID : String?
+    var timestamp : Date
     
     init?(dictionary: [String:Any]) {
         self.author = dictionary["author"] as? String  ?? "N/A"
@@ -30,16 +31,22 @@ class News {
         self.publishedAt = dictionary["publishAt"] as? String ?? "N/A"
         self.nid = dictionary["id"] as? String ?? "N/A"
         self.category = dictionary["category"] as?  String ?? "N/A"
+        self.timestamp = Date()
     }
-    
-    
 }
 
 extension News {
     
     convenience init?(snapshot: DataSnapshot){
-        guard let dictionary = snapshot.value as? [String: Any] else { return nil }
+        guard
+            let dictionary = snapshot.value as? [String: Any]
+        else { return nil }
+        
         self.init(dictionary: dictionary)
         self.linkID = snapshot.key
+        
+        if let validTimestamp = dictionary["timestamp"] as? Double {
+            self.timestamp = Date(timeIntervalSince1970: validTimestamp)
+        }
     }
 }
