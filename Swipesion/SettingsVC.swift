@@ -18,6 +18,7 @@ protocol SettingVCDelegate {
 
 class SettingsVC: UIViewController {
 
+    @IBOutlet weak var settingImageView: UIImageView! 
     @IBOutlet weak var closeButton: UIBarButtonItem! {
         didSet{
             closeButton.target = self
@@ -69,6 +70,7 @@ class SettingsVC: UIViewController {
         
         if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
             editProfileButton.isHidden = true
+            settingImageView.isHidden = true
         }
         
     }
