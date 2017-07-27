@@ -14,16 +14,44 @@ import FirebaseDatabase
 class RegisterVC: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet weak var userNameLogo: UIImageView! {
+        
+        didSet {
+            
+            userNameLogo.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        }
+    }
+    @IBOutlet weak var emailLogo: UIImageView! {
+        
+        didSet {
+            
+            emailLogo.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        }
+    }
+    @IBOutlet weak var passwordLogo: UIImageView! {
+        
+        didSet {
+            
+            passwordLogo.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        }
+    }
+    @IBOutlet weak var confirmPasswordLogo: UIImageView! {
+        
+        didSet {
+            confirmPasswordLogo.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+            
+        }
+    }
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var usernameTextField: UITextField!{
         didSet{
             usernameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
-                                                                         attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
+                                                                         attributes: [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)])
             usernameTextField.delegate = self
             let border = CALayer()
             let width = CGFloat(1.0)
-            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: usernameTextField.frame.size.height - width, width:  usernameTextField.frame.size.width + 18, height: usernameTextField.frame.size.height)
             
 //            let logoImage = UIImageView(image: UIImage(named: "user"))
@@ -36,7 +64,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 //            usernameTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
 //            usernameTextField.leftViewMode = .always
             usernameTextField.textAlignment = .center
-            usernameTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            usernameTextField.textColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
             
         }
     }
@@ -44,11 +72,11 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!{
         didSet{
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)])
             emailTextField.delegate = self
             let border = CALayer()
             let width = CGFloat(1.0)
-            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: emailTextField.frame.size.height - width, width:  emailTextField.frame.size.width + 18, height: emailTextField.frame.size.height)
             
 //            let logoImage = UIImageView(image: UIImage(named: "email"))
@@ -61,7 +89,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 //            emailTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
 //            emailTextField.leftViewMode = .always
             emailTextField.textAlignment = .center
-            emailTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            emailTextField.textColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
             
         }
     }
@@ -69,13 +97,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!{
         didSet{
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
+                                                                      attributes: [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)])
             passwordTextField.isSecureTextEntry = true
             passwordTextField.delegate = self
             
             let border = CALayer()
             let width = CGFloat(1.0)
-            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width + 18, height: passwordTextField.frame.size.height)
             
 //            let logoImage = UIImageView(image: UIImage(named: "lock"))
@@ -87,7 +115,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 //            passwordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
 //            passwordTextField.leftViewMode = .always
             passwordTextField.textAlignment = .center
-            passwordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            passwordTextField.textColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
         }
     }
     
@@ -95,13 +123,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var confirmPasswordTextField: UITextField!{
         didSet{
             confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Confirm password",
-                                                                                attributes: [NSForegroundColorAttributeName: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)])
+                                                                                attributes: [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)])
             confirmPasswordTextField.isSecureTextEntry = true
             confirmPasswordTextField.delegate = self
             
             let border = CALayer()
             let width = CGFloat(1.0)
-            border.borderColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+            border.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
             border.frame = CGRect(x: 0, y: confirmPasswordTextField.frame.size.height - width, width:  confirmPasswordTextField.frame.size.width + 18, height: confirmPasswordTextField.frame.size.height)
             
 //            let logoImage = UIImageView(image: UIImage(named: "lock"))
@@ -114,7 +142,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 //            confirmPasswordTextField.leftView?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
 //            confirmPasswordTextField.leftViewMode = .always
             confirmPasswordTextField.textAlignment = .center
-            confirmPasswordTextField.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            confirmPasswordTextField.textColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
         }
     }
     
@@ -123,7 +151,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         didSet{
             signUpButton.addTarget(self, action: #selector(didTapSignUpButton(_:)), for: .touchUpInside)
             signUpButton.layer.borderWidth = 1
-            signUpButton.layer.borderColor = UIColor.clear.cgColor
+            signUpButton.layer.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
             signUpButton.layer.cornerRadius = 6
             signUpButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
@@ -137,6 +165,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         setupSpinner()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "Registration"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+]
+
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
         
@@ -148,7 +180,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        self.view.backgroundColor = UIColor(red: 168/255, green: 200/255, blue: 78/255, alpha: 1)
+//        self.view.backgroundColor = UIColor(red: 168/255, green: 200/255, blue: 78/255, alpha: 1)
         
     }
     
@@ -159,8 +191,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.black
         
     }
     
