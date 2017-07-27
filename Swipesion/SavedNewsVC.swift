@@ -54,6 +54,8 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
         
     }
     
+  
+    
     
     
     func fetchSavedLinks(){
@@ -74,6 +76,8 @@ class SavedNewsVC: UIViewController, UISearchBarDelegate {
             }
         }
     }
+    
+    
     
     func getSavedLinks(_ linkID : String){
         
@@ -124,7 +128,7 @@ extension SavedNewsVC : UITableViewDelegate, UITableViewDataSource{
         let currentRow = filteredLinks[indexPath.row]
         
         cell.titleLabel.text = currentRow.title
-        cell.sourcesLabel.text = currentRow.sourceName
+        cell.sourcesLabel.text = "Author: \(currentRow.author ?? "N/A")"
         
         cell.cellImageView.sd_setShowActivityIndicatorView(true)
         cell.cellImageView.sd_setIndicatorStyle(.whiteLarge)

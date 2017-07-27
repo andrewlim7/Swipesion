@@ -68,6 +68,7 @@ class SettingsVC: UIViewController {
         if UserDefaults.standard.string(forKey: "currentUserFacebookID") != nil {
             editProfileButton.isHidden = true
         }
+        
     }
     
     func didTappedCloseButton() {

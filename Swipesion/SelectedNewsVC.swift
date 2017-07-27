@@ -79,16 +79,7 @@ class SelectedNewsVC: UIViewController {
         saveLinkButton.isEnabled = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-        
-    }
+    
     
     
     func twitterBtnTapped(_ sender: Any) {
@@ -155,6 +146,21 @@ class SelectedNewsVC: UIViewController {
         }
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    
+    
     
     func saveLinkButtonTapped(_ sender: Any){
         saveLinkButton.isEnabled = false

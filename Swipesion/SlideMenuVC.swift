@@ -63,8 +63,20 @@ class SlideMenuVC: UIViewController, SettingVCDelegate {
             
             if let fbProfileURL = NSURL(string: "https://graph.facebook.com/\(fbProfileID)/picture?type=large&return_ssl_resources=1") {
                 self.imageView.sd_setImage(with: fbProfileURL as URL)
+                
+                
             }
         }
+        
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
     }
     
     func didTappedSavedNewsButton(_ sender : Any){

@@ -163,6 +163,17 @@ class UserVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+    }
+    
     func setupSpinner(){
         myActivityIndicator.center = view.center
         myActivityIndicator.hidesWhenStopped = true
