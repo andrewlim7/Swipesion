@@ -54,7 +54,7 @@ class SettingsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")
+        usernameLabel.text = UserDefaults.standard.string(forKey: "currentUserName")?.capitalized
         
         if let profileImage = UserDefaults.standard.url(forKey: "currentUserProfileImage") {
             imageView.sd_setImage(with: profileImage)
