@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,23 +25,27 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-fa-68n">
-                    <rect key="frame" x="26" y="45" width="324" height="579"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lala" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsj-fa-68n">
+                    <rect key="frame" x="0.0" y="514" width="375" height="153"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="153" id="Eqk-q3-dm7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
                     <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gsj-fa-68n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="7i7-NU-bN2"/>
-                <constraint firstAttribute="trailing" secondItem="gsj-fa-68n" secondAttribute="trailing" constant="25" id="OE2-zn-pMw"/>
-                <constraint firstItem="gsj-fa-68n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="XNr-dR-f46"/>
-                <constraint firstAttribute="bottom" secondItem="gsj-fa-68n" secondAttribute="bottom" constant="43" id="a3j-I6-Xl8"/>
-                <constraint firstItem="DA2-RN-0vQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lIH-pQ-HDN"/>
-                <constraint firstAttribute="trailing" secondItem="DA2-RN-0vQ" secondAttribute="trailing" id="oMa-03-SMR"/>
-                <constraint firstItem="DA2-RN-0vQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qLL-L0-IHV"/>
-                <constraint firstAttribute="bottom" secondItem="DA2-RN-0vQ" secondAttribute="bottom" id="usg-DV-2Gd"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fq4-lI-yVl"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="trailing" secondItem="gsj-fa-68n" secondAttribute="trailing" id="Mzu-rp-mfk"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XG5-TU-hby"/>
+                <constraint firstAttribute="trailing" secondItem="DA2-RN-0vQ" secondAttribute="trailing" id="ao3-lJ-Hov"/>
+                <constraint firstAttribute="bottom" secondItem="DA2-RN-0vQ" secondAttribute="bottom" id="bzp-FS-pqY"/>
+                <constraint firstItem="gsj-fa-68n" firstAttribute="bottom" secondItem="DA2-RN-0vQ" secondAttribute="bottom" id="dCf-ac-iSD"/>
+                <constraint firstItem="DA2-RN-0vQ" firstAttribute="leading" secondItem="gsj-fa-68n" secondAttribute="leading" id="f46-pA-dIA"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="52.5"/>
         </view>

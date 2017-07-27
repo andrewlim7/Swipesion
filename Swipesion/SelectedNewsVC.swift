@@ -40,6 +40,9 @@ class SelectedNewsVC: UIViewController {
         didSet {
             
             urlBtn.addTarget(self, action: #selector(urlBtnTapped(_:)), for: .touchUpInside)
+            urlBtn.layer.borderWidth = 1
+            urlBtn.layer.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
+            urlBtn.layer.cornerRadius = 6
         }
     }
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -49,6 +52,9 @@ class SelectedNewsVC: UIViewController {
     @IBOutlet weak var saveLinkButton: UIButton!{
         didSet{
             saveLinkButton.addTarget(self, action: #selector(saveLinkButtonTapped(_:)), for: .touchUpInside)
+            saveLinkButton.layer.borderWidth = 1
+            saveLinkButton.layer.borderColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1).cgColor
+            saveLinkButton.layer.cornerRadius = 6
         }
     }
     
@@ -61,8 +67,8 @@ class SelectedNewsVC: UIViewController {
         super.viewDidLoad()
         
         self.titleLabel.text = getNews?.title
-        self.dateLabel.text = getNews?.publishedAt
-        self.authorLabel.text = getNews?.author
+        self.dateLabel.text = "Date: \(getNews?.publishedAt ?? "N/A" )"
+        self.authorLabel.text = "Author: \(getNews?.author ?? "N/A" )"
         self.descriptionLabel.text = getNews?.description
         
         if let url = getNews?.urlToImage {
@@ -77,6 +83,7 @@ class SelectedNewsVC: UIViewController {
         }
         
         saveLinkButton.isEnabled = true
+        
     }
     
     
@@ -156,7 +163,9 @@ class SelectedNewsVC: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)]
+        
     }
     
     

@@ -13,6 +13,7 @@ class CustomOverlayView: OverlayView {
     
     let overlayRightImage = "like"
     let overlayLeftImage = "dislike"
+    let overlayDownImage = "saved-1"
     
     @IBOutlet lazy var overlayImageView: UIImageView! = {
         
@@ -38,7 +39,7 @@ class CustomOverlayView: OverlayView {
 //                overlayImageView.tintColor = UIColor.green
                 
             case .down?:
-                overlayImageView.image = UIImage(named: overlayRightImage)
+                overlayImageView.image = UIImage(named: overlayDownImage)
 
             default:
                 overlayImageView.image = nil

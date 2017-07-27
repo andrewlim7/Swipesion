@@ -20,15 +20,24 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
     var animator: (LayoutAttributesAnimator, Bool, Int, Int)?
     var direction: UICollectionViewScrollDirection = .horizontal
     var categoryTitle:[String] = ["General", "Sport", "Music", "Technology", "Business", "Science and Nature", "Gaming", "Politics", "Entertainment"]
-    var categoryDesc:[String] = ["Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan.",
-                                 "Gummies pudding cupcake gingerbread bear claw marzipan."]
+    var categoryDesc:[String] = ["Find out your latest and hottest general with us, just start with a swipe.",
+                                 "Find out your latest and hottest sport with us, just start with a swipe.",
+                                 "Find out your latest and hottest music with us, just start with a swipe.",
+                                 "Find out your latest and hottest technology with us, just start with a swipe.",
+                                 "Find out your latest and hottest business with us, just start with a swipe.",
+                                 "Find out your latest and hottest science and nature with us, just start with a swipe.",
+                                 "Find out your latest and hottest gaming with us, just start with a swipe.",
+                                 "Find out your latest and hottest politics with us, just start with a swipe.",
+                                 "Find out your latest and hottest entertainment with us, just start with a swipe."]
+    var mainMenuLogo:[UIImage] = [UIImage(named: "mainMenuNews")!,
+                                  UIImage(named: "mainMenuSport")!,
+                                  UIImage(named: "mainMenuMusic")!,
+                                  UIImage(named: "mainMenuTech")!,
+                                  UIImage(named: "mainMenuBusiness")!,
+                                  UIImage(named: "mainMenuScience")!,
+                                  UIImage(named: "mainMenuGaming")!,
+                                  UIImage(named: "mainMenuPolitics")!,
+                                  UIImage(named: "mainMenuEntertainment")!]
     
     
     var randomColor = [UIColor(red: 168/255, green: 200/255, blue: 78/255, alpha: 1),
@@ -42,6 +51,8 @@ class MainVC: UIViewController, SWRevealViewControllerDelegate {
             
             mainCollectionViewCell.delegate = self
             mainCollectionViewCell.dataSource = self
+        
+            mainCollectionViewCell.layer.borderWidth = CGFloat(1.0)
         }
     }
     
@@ -267,7 +278,7 @@ extension MainVC: UICollectionViewDataSource {
         
         cell.titleLabel.text = categoryTitle[indexPath.item]
         cell.descriptionLabel.text = categoryDesc[indexPath.item]
-
+        cell.mainMenuLogoView.image = mainMenuLogo[indexPath.item]
 
         cell.backgroundColor = self.randomColor[indexPath.item % self.randomColor.count]
         

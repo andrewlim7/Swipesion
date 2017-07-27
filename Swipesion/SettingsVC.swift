@@ -22,6 +22,8 @@ class SettingsVC: UIViewController {
         didSet{
             closeButton.target = self
             closeButton.action = #selector(didTappedCloseButton)
+            closeButton.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+
         }
     }
     
