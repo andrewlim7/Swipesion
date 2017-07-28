@@ -17,11 +17,13 @@ class SlideMenuVC: UIViewController, SettingVCDelegate {
     @IBOutlet weak var savedNewsButton: UIButton!{
         didSet{
             savedNewsButton.addTarget(self, action: #selector(didTappedSavedNewsButton(_:)), for: .touchUpInside)
+            savedNewsButton.imageView?.contentMode = .scaleAspectFit
         }
     }
     @IBOutlet weak var settingsButton: UIButton! {
         didSet{
             settingsButton.addTarget(self, action: #selector(didTappedSettingsButton(_ :)), for: .touchUpInside)
+            settingsButton.imageView?.contentMode = .scaleAspectFit
             
         }
     }
