@@ -9,22 +9,47 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import CSPieChart
 
 class StatisticVC: UIViewController {
 
+    @IBOutlet weak var pieView: CSPieChart!
     @IBOutlet weak var generalLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var musicLabel: UILabel!
     @IBOutlet weak var technologyLabel: UILabel!
-    
     @IBOutlet weak var businessLabel: UILabel!
     @IBOutlet weak var scienceAndNatureLabel: UILabel!
     @IBOutlet weak var gamingLabel: UILabel!
     @IBOutlet weak var politicsLabel: UILabel!
-    
     @IBOutlet weak var entertaimentLabel: UILabel!
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    
+    
+    var dataList = [
+        CSPieChartData(key: "General", value: 30),
+        CSPieChartData(key: "Sport", value: 30),
+        CSPieChartData(key: "Music", value: 30),
+        CSPieChartData(key: "Technology", value: 30),
+        CSPieChartData(key: "Business", value: 30),
+        CSPieChartData(key: "Science-And-Nature", value: 30),
+        CSPieChartData(key: "Gaming", value: 80),
+        CSPieChartData(key: "Politics", value: 80),
+        CSPieChartData(key: "Entertainment", value: 80)
+    ]
+    
+    var colorList: [UIColor] = [
+        .red,
+        .orange,
+        .yellow,
+        .green,
+        .blue,
+        .magenta,
+        .cyan,
+        .black,
+        .gray
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +65,47 @@ class StatisticVC: UIViewController {
         fetchCount(Category: "Politics")
         fetchCount(Category: "Entertaiment")
         
+        pieView?.dataSource = self
+        pieView?.delegate = self
+        
+        pieView?.pieChartRadiusRate = 0.5
+        pieView?.pieChartLineLength = 12
+        pieView?.seletingAnimationType = .touch
+        
+        pieView?.show(animated: true)
+        
         setupSpinner()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    fileprivate var touchDistance: CGFloat = 0
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let location = touches.first?.location(in: view) else {
+            return
+        }
+        
+        touchDistance = location.x
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let location = touches.first?.location(in: view) else {
+            return
+        }
+        
+        touchDistance -= location.x
+        
+        if touchDistance > 100 {
+            print("Right")
+        } else if touchDistance < -100 {
+            print("Left")
+        }
+        
+        touchDistance = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -107,4 +165,48 @@ class StatisticVC: UIViewController {
         view.addSubview(myActivityIndicator)
     }
 
+}
+extension StatisticVC: CSPieChartDataSource {
+    func numberOfComponentData() -> Int {
+        return dataList.count
+    }
+    
+    func pieChartComponentData(at index: Int) -> CSPieChartData {
+        return dataList[index]
+    }
+    
+    func numberOfComponentColors() -> Int {
+        return colorList.count
+    }
+    
+    func pieChartComponentColor(at index: Int) -> UIColor {
+        return colorList[index]
+    }
+    
+    func numberOfLineColors() -> Int {
+        return colorList.count
+    }
+    
+    func pieChartLineColor(at index: Int) -> UIColor {
+        return colorList[index]
+    }
+    
+    func numberOfComponentSubViews() -> Int {
+        return dataList.count
+    }
+    
+    func pieChartComponentSubView(at index: Int) -> UIView {
+        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        view.image = UIImage(named: "test.png")
+        view.layer.cornerRadius = 15
+        view.clipsToBounds = true
+        return view
+    }
+}
+
+extension StatisticVC: CSPieChartDelegate {
+    func didSelectedPieChartComponent(at index: Int) {
+        let data = dataList[index]
+        print(data.key)
+    }
 }

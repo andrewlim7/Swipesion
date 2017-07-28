@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - CSPieChart (0.5.4)
   - FBSDKCoreKit (4.24.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.24.0):
@@ -64,6 +65,7 @@ PODS:
 
 DEPENDENCIES:
   - AnimatedCollectionViewLayout
+  - CSPieChart
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -79,6 +81,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AnimatedCollectionViewLayout: 504b992a4258eb39d2dd2b2b48e84b4b95860fd7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CSPieChart: 7d711154dfbfb32db91188435e8321d4c567f70d
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
   FBSDKLoginKit: 1214c6d5a1c4995b694d8db8a9ba6910c6028acf
   FBSDKShareKit: a2ed9d7781a4eda9ac20d7404305e795b10251ac
@@ -97,6 +100,6 @@ SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 522b580eb8d305ff9e81cdd345439dedfc4841aa
+PODFILE CHECKSUM: c93f048e2480453b28bcf1ce034194a313210b99
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1

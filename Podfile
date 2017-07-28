@@ -19,6 +19,7 @@ target 'Swipesion' do
   pod 'Koloda', '~> 4.0'
   pod 'paper-onboarding', '~> 2.0.1'
   pod 'AnimatedCollectionViewLayout'
+  pod 'CSPieChart'
 
 
 end

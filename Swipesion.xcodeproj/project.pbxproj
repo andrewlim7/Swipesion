@@ -46,6 +46,19 @@
 		E5BE60801F17BD8700F44858 /* SlideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE607F1F17BD8700F44858 /* SlideMenuVC.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		81EBD5BD1F2B353E00BD5968 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		45697F4EED53DA362E1B63E3 /* Pods_Swipesion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swipesion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C5346AE312BCFAB2A9C868 /* Pods-Swipesion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swipesion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swipesion/Pods-Swipesion.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +245,7 @@
 				C7E88F761F1488D600CA4478 /* Resources */,
 				637A1AE4968B587E9CD1B0B3 /* [CP] Embed Pods Frameworks */,
 				5702E8D0CD41EA01F786AF16 /* [CP] Copy Pods Resources */,
+				81EBD5BD1F2B353E00BD5968 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,7 +268,7 @@
 				TargetAttributes = {
 					C7E88F771F1488D600CA4478 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NRDQ5S5DWT;
+						DevelopmentTeam = 3F9ZJ33XLL;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -339,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -501,10 +515,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = NRDQ5S5DWT;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion132;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -518,10 +532,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = NRDQ5S5DWT;
+				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion132;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
