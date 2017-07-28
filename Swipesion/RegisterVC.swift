@@ -170,7 +170,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
 ]
 
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
-        myActivityIndicator.backgroundColor = UIColor.gray
         
         imageView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(sender:)))

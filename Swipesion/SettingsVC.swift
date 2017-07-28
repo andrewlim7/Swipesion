@@ -97,6 +97,7 @@ class SettingsVC: UIViewController {
         UserDefaults.standard.setValue(nil, forKey: "currentUID")
         UserDefaults.standard.setValue(nil, forKey: "currentUserName")
         UserDefaults.standard.set(nil, forKey: "currentUserProfileImage")
+        UserDefaults.standard.set(nil, forKey: "currentUserFacebookID")
         UserDefaults.standard.synchronize()
         
         do {

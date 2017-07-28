@@ -14,6 +14,7 @@
 		81D0DD441F272E2500E4B25B /* LinearCardAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD411F272E2500E4B25B /* LinearCardAttributesAnimator.swift */; };
 		81D0DD451F272E2500E4B25B /* AnimatedCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */; };
 		81D0DD461F272E2500E4B25B /* LayoutAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */; };
+		81EBD5651F2AE89300BD5968 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EBD5641F2AE89300BD5968 /* UIScrollView+EmptyDataSet.m */; };
 		C79976091F25E2830030EEA5 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79976081F25E2830030EEA5 /* UserProfile.swift */; };
 		C799760B1F273DB40030EEA5 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799760A1F273DB40030EEA5 /* GeneralSettings.swift */; };
 		C79976331F274A970030EEA5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79976321F274A970030EEA5 /* Onboarding.storyboard */; };
@@ -54,6 +55,8 @@
 		81D0DD411F272E2500E4B25B /* LinearCardAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearCardAttributesAnimator.swift; sourceTree = "<group>"; };
 		81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedCollectionViewLayout.swift; sourceTree = "<group>"; };
 		81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesAnimator.swift; sourceTree = "<group>"; };
+		81EBD5631F2AE89300BD5968 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		81EBD5641F2AE89300BD5968 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		C79976081F25E2830030EEA5 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		C799760A1F273DB40030EEA5 /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		C79976321F274A970030EEA5 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				81D0DD421F272E2500E4B25B /* AnimatedCollectionViewLayout.swift */,
 				81D0DD431F272E2500E4B25B /* LayoutAttributesAnimator.swift */,
 				81D0DD3D1F271A4900E4B25B /* OnboardingView.swift */,
+				81EBD5631F2AE89300BD5968 /* UIScrollView+EmptyDataSet.h */,
+				81EBD5641F2AE89300BD5968 /* UIScrollView+EmptyDataSet.m */,
 				C7E88FB91F174D1A00CA4478 /* News.swift */,
 				C7E88F9B1F14ABD400CA4478 /* CircleView.swift */,
 				E5BE607A1F176C2E00F44858 /* SWRevealViewController.h */,
@@ -366,6 +371,7 @@
 				C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */,
 				81D0DD3C1F27199300E4B25B /* OnboardingVC.swift in Sources */,
 				C7E88FC01F17C20800CA4478 /* SavedNewsCell.swift in Sources */,
+				81EBD5651F2AE89300BD5968 /* UIScrollView+EmptyDataSet.m in Sources */,
 				C7E88FA61F14D73A00CA4478 /* SavedNewsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

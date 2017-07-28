@@ -73,16 +73,13 @@ class SlideMenuVC: UIViewController, SettingVCDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+                
     }
     
     func didTappedSavedNewsButton(_ sender : Any){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "SavedNewsVC") as? SavedNewsVC
-        // let navController = UINavigationController()
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
