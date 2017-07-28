@@ -18,6 +18,7 @@
 		C79976091F25E2830030EEA5 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79976081F25E2830030EEA5 /* UserProfile.swift */; };
 		C799760B1F273DB40030EEA5 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C799760A1F273DB40030EEA5 /* GeneralSettings.swift */; };
 		C79976331F274A970030EEA5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79976321F274A970030EEA5 /* Onboarding.storyboard */; };
+		C7E5788A1F2B1E1800B4E498 /* StatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E578891F2B1E1800B4E498 /* StatisticVC.swift */; };
 		C7E88F7C1F1488D600CA4478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E88F7B1F1488D600CA4478 /* AppDelegate.swift */; };
 		C7E88F811F1488D600CA4478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7E88F7F1F1488D600CA4478 /* Main.storyboard */; };
 		C7E88F831F1488D600CA4478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7E88F821F1488D600CA4478 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		C79976081F25E2830030EEA5 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		C799760A1F273DB40030EEA5 /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		C79976321F274A970030EEA5 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		C7E578891F2B1E1800B4E498 /* StatisticVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticVC.swift; sourceTree = "<group>"; };
 		C7E88F781F1488D600CA4478 /* Swipesion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swipesion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E88F7B1F1488D600CA4478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7E88F801F1488D600CA4478 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				C7E88FA31F14D73000CA4478 /* SelectedCategoryVC.swift */,
 				C7E88FA51F14D73A00CA4478 /* SavedNewsVC.swift */,
 				C7E88FBB1F174F6100CA4478 /* SelectedNewsVC.swift */,
+				C7E578891F2B1E1800B4E498 /* StatisticVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -251,7 +254,7 @@
 				TargetAttributes = {
 					C7E88F771F1488D600CA4478 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3F9ZJ33XLL;
+						DevelopmentTeam = DQCNUZZSN6;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -336,7 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -355,6 +358,7 @@
 				C7E88FBA1F174D1A00CA4478 /* News.swift in Sources */,
 				E5BE607E1F17BD2C00F44858 /* SettingsVC.swift in Sources */,
 				81D0DD3E1F271A4900E4B25B /* OnboardingView.swift in Sources */,
+				C7E5788A1F2B1E1800B4E498 /* StatisticVC.swift in Sources */,
 				C7E88FBC1F174F6100CA4478 /* SelectedNewsVC.swift in Sources */,
 				81D0DD441F272E2500E4B25B /* LinearCardAttributesAnimator.swift in Sources */,
 				C7E88F9C1F14ABD400CA4478 /* CircleView.swift in Sources */,
@@ -497,10 +501,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion112233;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -514,10 +518,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				INFOPLIST_FILE = Swipesion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion112233;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.Swipesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swipesion/Swipesion-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

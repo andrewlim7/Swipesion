@@ -50,6 +50,7 @@ class SelectedCategoryVC: UIViewController {
     let kolodaCountOfVisibleCards = 2
     let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var storeCategory : String?
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
@@ -73,6 +74,7 @@ class SelectedCategoryVC: UIViewController {
             categoryTitleLabel.text = "Loading"
         } else {
             categoryTitleLabel.text = getNewsID[0].category?.capitalized
+            storeCategory = categoryTitleLabel.text
         }
         
         newsOnCategory()
@@ -156,7 +158,9 @@ class SelectedCategoryVC: UIViewController {
                         
                         for retrievedObject in getArticles {
                             if let latestNews = News(dictionary: retrievedObject, source:getSourceName) {
-                                self.news.append(latestNews)
+                                DispatchQueue.main.async {
+                                    self.news.append(latestNews)
+                                }
                             }
                         }
                         
@@ -286,6 +290,15 @@ extension SelectedCategoryVC: KolodaViewDataSource {
         if direction == SwipeResultDirection.right {
             
             let sendNews = self.news[index]
+            
+            
+            let ref = Database.database().reference()
+            if let userID = Auth.auth().currentUser?.uid{
+                if let category = storeCategory{
+                    let getCateRef = ref.child("users").child(userID).child("category").child(category).childByAutoId()
+                    getCateRef.setValue(true)
+                }
+            }
             
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vc = storyboard.instantiateViewController(withIdentifier: "SelectedNewsVC") as! SelectedNewsVC

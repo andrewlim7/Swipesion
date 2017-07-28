@@ -31,6 +31,12 @@ class SlideMenuVC: UIViewController, SettingVCDelegate {
     
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var statisticButton: UIButton!{
+        didSet{
+            statisticButton.addTarget(self, action: #selector(didTappedStatisticButton(_:)), for: .touchUpInside)
+        }
+    }
+    
     let currentUserID = UserDefaults.standard.string(forKey: "currentUID")
     
     override func viewDidLoad() {
@@ -75,6 +81,12 @@ class SlideMenuVC: UIViewController, SettingVCDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
                 
+    }
+    
+    func didTappedStatisticButton(_ sender: Any){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatisticVC") as? StatisticVC
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func didTappedSavedNewsButton(_ sender : Any){
