@@ -23,23 +23,17 @@ class StatisticVC: UIViewController {
     @IBOutlet weak var gamingLabel: UILabel!
     @IBOutlet weak var politicsLabel: UILabel!
     @IBOutlet weak var entertaimentLabel: UILabel!
+    @IBOutlet weak var chooseLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
+    var dataList: [CSPieChartData] = []
     
-    var dataList = [
-        CSPieChartData(key: "General", value: 30),
-        CSPieChartData(key: "Sport", value: 30),
-        CSPieChartData(key: "Music", value: 30),
-        CSPieChartData(key: "Technology", value: 30),
-        CSPieChartData(key: "Business", value: 30),
-        CSPieChartData(key: "Science-And-Nature", value: 30),
-        CSPieChartData(key: "Gaming", value: 80),
-        CSPieChartData(key: "Politics", value: 80),
-        CSPieChartData(key: "Entertainment", value: 80)
-    ]
+    var newCount = 0
     
     var colorList: [UIColor] = [
+        
         .red,
         .orange,
         .yellow,
@@ -54,7 +48,6 @@ class StatisticVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         fetchCount(Category: "General")
         fetchCount(Category: "Sport")
         fetchCount(Category: "Music")
@@ -63,13 +56,13 @@ class StatisticVC: UIViewController {
         fetchCount(Category: "Science-And-Nature")
         fetchCount(Category: "Gaming")
         fetchCount(Category: "Politics")
-        fetchCount(Category: "Entertaiment")
+        fetchCount(Category: "Entertainment")
         
         pieView?.dataSource = self
         pieView?.delegate = self
         
-        pieView?.pieChartRadiusRate = 0.5
-        pieView?.pieChartLineLength = 12
+        pieView?.pieChartRadiusRate = 0.6
+        pieView?.pieChartLineLength = 20
         pieView?.seletingAnimationType = .touch
         
         pieView?.show(animated: true)
@@ -107,7 +100,9 @@ class StatisticVC: UIViewController {
         super.viewDidAppear(animated)
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -117,55 +112,85 @@ class StatisticVC: UIViewController {
         
     }
     
-    func fetchCount(Category:String){
+    func fetchCount(Category:String) {
+        
         myActivityIndicator.startAnimating()
         let ref = Database.database().reference()
         if let currentUserID = Auth.auth().currentUser?.uid{
             ref.child("users").child(currentUserID).child("category").child(Category).observe(.value, with: { (snapshot) in
                 var count = 0
                 count += Int(snapshot.childrenCount)
+                
                 if Category == "General"{
                     self.generalLabel.text = "Total \(Category):\(count)"
-                    
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+                    self.newCount = count
+                    self.dataList.append(newData)
+
                 } else if Category == "Sport"{
                     self.sportLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                     
                 } else if Category == "Music"{
                     self.musicLabel.text = "Total \(Category):\(count)"
-                    
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+                    self.newCount = count
+                    self.dataList.append(newData)
+
                 } else if Category == "Technology"{
                     self.technologyLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                     
                 } else if Category == "Business"{
                     self.businessLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                     
                 } else if Category == "Science-And-Nature"{
                     self.scienceAndNatureLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                     
                 } else if Category == "Gaming"{
                     self.gamingLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
+
                     
                 } else if Category == "Politics"{
                     self.politicsLabel.text = "Total \(Category):\(count)"
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                     
                 } else {
                     self.entertaimentLabel.text = "Total \(Category):\(count)"
-                    
+                    let newData = CSPieChartData(key: Category, value: Double(count))
+//                    self.newCount = count
+                    self.dataList.append(newData)
                 }
-                
-                self.myActivityIndicator.stopAnimating()
+                    self.pieView.reloadPieChart()
+                    self.myActivityIndicator.stopAnimating()
             })
         }
     }
     
     func setupSpinner(){
+        
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.center = view.center
         myActivityIndicator.hidesWhenStopped = true
         view.addSubview(myActivityIndicator)
     }
-
 }
+
 extension StatisticVC: CSPieChartDataSource {
     func numberOfComponentData() -> Int {
         return dataList.count
@@ -197,16 +222,19 @@ extension StatisticVC: CSPieChartDataSource {
     
     func pieChartComponentSubView(at index: Int) -> UIView {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        view.image = UIImage(named: "test.png")
+        view.image = UIImage(named: "saved")
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
     }
+
 }
 
 extension StatisticVC: CSPieChartDelegate {
     func didSelectedPieChartComponent(at index: Int) {
         let data = dataList[index]
         print(data.key)
+        chooseLabel.text = data.key
+        countLabel.text = String(newCount)
     }
 }
