@@ -32,6 +32,10 @@ class CustomImageView: UIView {
         
         var imageView = UIImageView(frame: self.bounds)
         
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 10
+        
         self.addSubview(imageView)
         
         return imageView
@@ -44,6 +48,9 @@ class CustomImageView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderWidth = 1
+        contentView.layer.cornerRadius = 10
         
 //        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
 //        let blurEffectView = UIVisualEffectView(effect: blurEffect)

@@ -281,6 +281,9 @@ extension MainVC: UICollectionViewDataSource {
         cell.mainMenuLogoView.image = mainMenuLogo[indexPath.item]
 
         cell.backgroundColor = self.randomColor[indexPath.item % self.randomColor.count]
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 20
         
         return cell
     }

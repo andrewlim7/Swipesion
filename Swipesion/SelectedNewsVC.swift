@@ -172,10 +172,10 @@ class SelectedNewsVC: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)]
-        
+//        
+//        self.navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)]
+//        
     }
     
     func saveLinkButtonTapped(_ sender: Any){

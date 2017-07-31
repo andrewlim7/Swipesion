@@ -29,7 +29,7 @@ class UserVC: UIViewController {
         didSet{
             cancelButton.target = self
             cancelButton.action = #selector(didTappedCancelButton(_:))
-            cancelButton.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+//            cancelButton.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
         }
     }
 
