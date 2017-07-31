@@ -14,15 +14,6 @@ import CSPieChart
 class StatisticVC: UIViewController {
 
     @IBOutlet weak var pieView: CSPieChart!
-    @IBOutlet weak var generalLabel: UILabel!
-    @IBOutlet weak var sportLabel: UILabel!
-    @IBOutlet weak var musicLabel: UILabel!
-    @IBOutlet weak var technologyLabel: UILabel!
-    @IBOutlet weak var businessLabel: UILabel!
-    @IBOutlet weak var scienceAndNatureLabel: UILabel!
-    @IBOutlet weak var gamingLabel: UILabel!
-    @IBOutlet weak var politicsLabel: UILabel!
-    @IBOutlet weak var entertaimentLabel: UILabel!
     @IBOutlet weak var chooseLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     
@@ -30,20 +21,7 @@ class StatisticVC: UIViewController {
     
     var dataList: [CSPieChartData] = []
     
-    var newCount = 0
-    
-    var colorList: [UIColor] = [
-        
-        .red,
-        .orange,
-        .yellow,
-        .green,
-        .blue,
-        .magenta,
-        .cyan,
-        .black,
-        .gray
-    ]
+    var colorList: [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +47,8 @@ class StatisticVC: UIViewController {
         
         setupSpinner()
     }
+    
+    
     
     fileprivate var touchDistance: CGFloat = 0
     
@@ -110,7 +90,12 @@ class StatisticVC: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)]
+        
     }
+
     
     func fetchCount(Category:String) {
         
@@ -122,58 +107,58 @@ class StatisticVC: UIViewController {
                 count += Int(snapshot.childrenCount)
                 
                 if Category == "General"{
-                    self.generalLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-                    self.newCount = count
+                    let newColor = UIColor.red
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
 
                 } else if Category == "Sport"{
-                    self.sportLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.orange
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                     
                 } else if Category == "Music"{
-                    self.musicLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-                    self.newCount = count
+                    let newColor = UIColor.yellow
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
 
                 } else if Category == "Technology"{
-                    self.technologyLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.green
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                     
                 } else if Category == "Business"{
-                    self.businessLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.blue
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                     
                 } else if Category == "Science-And-Nature"{
-                    self.scienceAndNatureLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.magenta
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                     
                 } else if Category == "Gaming"{
-                    self.gamingLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.cyan
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
 
                     
                 } else if Category == "Politics"{
-                    self.politicsLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.black
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                     
                 } else {
-                    self.entertaimentLabel.text = "Total \(Category):\(count)"
                     let newData = CSPieChartData(key: Category, value: Double(count))
-//                    self.newCount = count
+                    let newColor = UIColor.gray
+                    self.colorList.append(newColor)
                     self.dataList.append(newData)
                 }
                     self.pieView.reloadPieChart()
@@ -235,6 +220,6 @@ extension StatisticVC: CSPieChartDelegate {
         let data = dataList[index]
         print(data.key)
         chooseLabel.text = data.key
-        countLabel.text = String(newCount)
+        countLabel.text = String(format: "%.0f", data.value)
     }
 }
