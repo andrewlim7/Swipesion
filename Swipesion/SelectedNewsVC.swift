@@ -15,6 +15,7 @@ import Social
 
 class SelectedNewsVC: UIViewController {
     
+    @IBOutlet weak var buttonHeight: NSLayoutConstraint!
 
     @IBOutlet weak var twitterBtn: UIButton! {
         
@@ -57,6 +58,11 @@ class SelectedNewsVC: UIViewController {
             saveLinkButton.layer.cornerRadius = 6
         }
     }
+    @IBOutlet weak var cancelButton: UIButton!{
+        didSet{
+            cancelButton.addTarget(self, action: #selector(didTappedCancelButton(_:)), for: .touchUpInside)
+        }
+    }
     
     var getNews : News?
     var getIsNewsSaved : Bool?
@@ -80,13 +86,17 @@ class SelectedNewsVC: UIViewController {
         
         if getIsNewsSaved == true{
             saveLinkButton.isHidden = true
+            cancelButton.isHidden = true
+            buttonHeight.constant = 0
         }
         
         saveLinkButton.isEnabled = true
         
     }
     
-    
+    func didTappedCancelButton(_ sender:Any){
+        dismiss(animated: true, completion: nil)
+    }
     
     
     func twitterBtnTapped(_ sender: Any) {
@@ -167,9 +177,6 @@ class SelectedNewsVC: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 255/255, green: 88/255, blue: 85/255, alpha: 1)]
         
     }
-    
-    
-    
     
     func saveLinkButtonTapped(_ sender: Any){
         saveLinkButton.isEnabled = false

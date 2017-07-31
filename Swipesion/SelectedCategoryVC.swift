@@ -48,7 +48,7 @@ class SelectedCategoryVC: UIViewController {
     let frameAnimationSpringBounciness: CGFloat = 9
     let frameAnimationSpringSpeed: CGFloat = 16
     let kolodaCountOfVisibleCards = 2
-    let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
+    let kolodaAlphaValueSemiTransparent: CGFloat = 0
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     var storeCategory : String?
     
@@ -99,7 +99,7 @@ class SelectedCategoryVC: UIViewController {
     }
     
     func saveLinkButtonTapped(_ sender: Any){
-        kolodaView?.swipe(.down)
+        kolodaView?.swipe(.up)
     }
     
     func backButtonTapped(_ sender: Any){
@@ -201,7 +201,7 @@ class SelectedCategoryVC: UIViewController {
 extension SelectedCategoryVC: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
-        return [.left, .right, .down]
+        return [.left, .right, .up]
     }
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
@@ -287,7 +287,7 @@ extension SelectedCategoryVC: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         
-        if direction == SwipeResultDirection.right {
+        if direction == SwipeResultDirection.up {
             
             let sendNews = self.news[index]
             
@@ -305,9 +305,9 @@ extension SelectedCategoryVC: KolodaViewDataSource {
             
             vc.getNews = sendNews
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true, completion: nil)
             
-        } else if direction == SwipeResultDirection.down {
+        } else if direction == SwipeResultDirection.right {
             
             let databaseRef = Database.database().reference()
             

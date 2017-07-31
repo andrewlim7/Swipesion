@@ -36,15 +36,22 @@ class StatisticVC: UIViewController {
         fetchCount(Category: "Politics")
         fetchCount(Category: "Entertainment")
         
+//        if dataList.count == 0 {
+//            dataList = [CSPieChartData(key: "General", value: 1)]
+//            
+//            colorList = [.white]
+//        }
+        
+        
         pieView?.dataSource = self
         pieView?.delegate = self
         
-        pieView?.pieChartRadiusRate = 0.6
+        pieView?.pieChartRadiusRate = 0.9
         pieView?.pieChartLineLength = 20
         pieView?.seletingAnimationType = .touch
         
         pieView?.show(animated: true)
-        
+
         setupSpinner()
     }
     

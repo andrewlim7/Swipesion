@@ -38,8 +38,8 @@ class CustomOverlayView: OverlayView {
                 overlayImageView.image = UIImage(named: overlayRightImage)
 //                overlayImageView.tintColor = UIColor.green
                 
-            case .down?:
-                overlayImageView.image = UIImage(named: overlayDownImage)
+//            case .up?:
+//                overlayImageView.image = UIImage(named: overlayDownImage)
 
             default:
                 overlayImageView.image = nil
