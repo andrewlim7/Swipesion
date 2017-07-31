@@ -72,7 +72,7 @@ extension OnboardingVC: PaperOnboardingDataSource {
         
         return[("Newspaper-icon", "Just Swipe", "A great news start with a swipe, change the way we read news, say goodbye to flip just swipe.", "", backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
                
-               ("done rm5", "Left. Right. Down.", "Swipe left to skip. Swipe right to read now. Swipe down to read later.", "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
+               ("done rm5", "Left. Right. Up.", "Swipe left to skip. Swipe up to read now. Swipe right to read later.", "", backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
                
                ("notification","Stay up to date!", "We won't let you miss the latest and hottest news! Press 'Start' to login.", "", backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
     }
